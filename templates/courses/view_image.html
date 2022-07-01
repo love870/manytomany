@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <table border="2">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+        
+            <th>First_Name</th>
+
+            <th>Image</th>
+        </tr>
+        {% for i in image %}
+        <tr> 
+            <td>{{i.id}}</td>
+            <td>{{ i.username }}</td>
+    
+            <td>{{ i.first_name }}</td>
+           
+            <td>
+                {% if i.image_upload %}
+
+                <a href="{{MEDIA_ROOT}}/{{i.image_upload}}" target="_blank"><img border="2" src="{{MEDIA_ROOT}}/{{i.image_upload}}" width="150" height="150"></a>
+
+                {% else %}
+
+               No Image
+
+                {% endif %}
+            </td>
+        
+        </tr>
+        {% endfor %}
+    
+  
+
+</body>
+</html>

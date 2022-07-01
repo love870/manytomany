@@ -1,0 +1,73 @@
+
+
+        <table id="course_table" class="table table-striped col-md-12  table-hover table-bordered"
+        style="border:1px">
+        <thead>
+          <tr>
+            <th style="text-align:center ">S.No</th>
+            <th style="text-align:center "> Class ID</th>
+            <th style="text-align:center "> Course Name</th>
+            <th style="text-align:center ">Date </th>
+            <th style="text-align:center ">Start Time</th>
+            <th style="text-align:center ">End Time</th>
+            <th style="text-align:center ">Day</th>
+            <th style="text-align:center ">Section</th>
+
+            <th style="text-align:center ">Teacher Name</th>
+            <th style="text-align:center ">Grade</th>
+            <th style="text-align:center ">No. of students</th>
+            <th style="text-align:center ">Details</th>
+            <th style="text-align:center ">STATUS</th>
+
+
+        </thead>
+        <tbody>
+          {% for class in x %}
+          <tr id="{{course.id}}">
+            <td style="text-align:center ">{{ classes.start_index|add:forloop.counter0}}</td>
+            <td style="text-align:center ">#{{class.id }}</td>
+            <td style="text-align:center "> {{class.course_id__course_name}}</td>
+            <td style="text-align:center "> {{ class.class_date}} </td>
+            <td style="text-align:center ">{{ class.start_time }} </td>
+            <td style="text-align:center ">{{class.end_time }}</td>
+            <td style="text-align:center ">{{class.day_of_week__day }}</td>
+            <td style="text-align:center ">{{class.section }}</td>
+
+            <td style="text-align:center "> {% if class.teacher_id__first_name %} {{class.teacher_id__first_name
+              }} {{class.teacher_id__last_name }} {% else %} ----- {% endif %} </td>
+            <td style="text-align:center ">{{class.class_grade }}</td>
+            <td style="text-align:center ">{{class.reserved_seats }}</td>
+            <td style="text-align:center; display: flex;">
+              <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover"
+                data-placement="top" data-content="Class details" href="/secret/class_details/{{ class.id }}"><i
+                  class="fas fa-clipboard fa-lg"></i></a>
+              <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover"
+                data-placement="top" data-content="Edit Class" href="/secret/class_edit/{{ class.id }}/"><i
+                  class="fas fa-user-edit fa-lg"></i></a>
+            </td>
+
+
+            <td>
+       
+              <label class="switch"> 
+                <!-- <input type="checkbox"  id="{{class.id}}" class="checkbox {% if player.player_check %} checked{% endif %}"> -->
+                <input type="checkbox"  id="{{class.id}}" class="checkbox" {% if class.status == 1 %}
+                checked {% elif class.status == 0 %} unchecked {% endif %}>        
+                <div class="slider round"></div>
+              </label>
+            </td>
+
+
+          
+         
+
+         
+
+          
+
+
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>

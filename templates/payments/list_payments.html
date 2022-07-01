@@ -1,0 +1,163 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+.hidden{
+     display:none;
+ }
+
+
+
+</style>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/secret">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> list payments  </li>
+    </ol>
+    
+    <div class="row">
+        <div class="widget">
+          <div class="widget-header"> 
+              <div class="row">
+                  <div class="col-md-4" style="display:block">
+                      <form class="mt-1" name="myform" method="POST" action="/secret/list_payments/"> {% csrf_token %}
+                        <input class="form-control " type="text" name="search" placeholder="Search" {% if data %} value="{{data}}" {% else %}
+                        value="" {% endif %}>
+                      </form>
+                  </div>
+                  <div class="col-md-4" style="line-height: 44px;" >
+                    <form name="myform" method="GET" action="/secret/list_courses/">
+                      <a class="btn btn-primary "  href="/secret/list_payments/" style="background-color:#0e4797;color:white ">Reset</a>  
+                    </form>
+                  </div>
+                </div>
+          </div>
+          <div class="widget-content">
+
+            {% if msg %}  
+            <div class="alert alert-success" id="msg"  > {{msg}} </div>
+            {% endif %}  
+            
+            {% if err_msg %}  
+            <div class="alert alert-danger" id="msg2"  > {{err_msg}} </div>
+            {% endif %} 
+
+            <div class="alert alert-success hidden" id="delete-success"  > Course deleted successfully </div>
+            <div class="alert alert-danger hidden" id="delete-error"  > Something went wrong </div>
+
+              <div class="table-responsive">
+                  <table id="course_table" class = "table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+                  <thead>
+                    <tr>
+                      <th  style="text-align:center ">S.No</th>  
+                      <!-- <th>Deppt.ID</th>   -->
+                      <th  style="text-align:center ">Order ID</th>
+                      <th  style="text-align:center ">Name</th>  
+
+                      <th  style="text-align:center ">Payment Amount </th>  
+
+                      <th  style="text-align:center ">payment Mode</th> 
+                      <th  style="text-align:center ">Platform</th>  
+                      <th  style="text-align:center ">Transaction date</th>
+                      <th  style="text-align:center ">Promocodes</th>
+
+                      <th  style="text-align:center ">Actions</th>  
+                  </thead>
+                  <tbody>
+                    {% for payment in payments %}  
+                      <tr id ="{{course.id}}">  
+                        <td  style="text-align:center ">{{ payments.start_index|add:forloop.counter0}}</td>
+                        <td  style="text-align:center ">  {{payment.order_id}} </td>
+                        <td  style="text-align:center "> {{payment.order_id__parent_id__first_name}} {{payment.order_id__parent_id__last_name}}</td>  
+                        <td  style="text-align:center ">  {{payment.transaction_amt|floatformat}} $</td>
+                        <td  style="text-align:center ">{{ payment.transaction_mode }} </td> 
+
+                        <td  style="text-align:center ">{{ payment.transaction_platform }}</td>  
+
+                        <td  style="text-align:center ">{{payment.transaction_date }}</td>  
+                        <td  style="text-align:center "> {%  if payment.promocode_id__code %}    {{payment.promocode_id__code }} -  {{payment.promocode_id__discount_percentage }}%   {% else %} ---- {% endif %} </td>  
+
+                        <td  style="text-align:center ">  
+                          
+                            <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Order Items" href="/secret/order_items/{{ payment.order_id }}"><i class="fas fa-clipboard fa-lg"></i></a>
+                         
+                        </td>  
+                      </tr>  
+                    {% endfor %}
+                  </tbody> 
+                </table>
+
+              </div>
+              </div>
+              
+              {% if payments %}
+                <nav aria-label="Page navigation ">  
+                  <ul class="pagination justify-content-end ">
+                    {% if payments.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link"   href="?page=1&search_string={{data}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">begin</span>
+                      </a>
+                    </li>  
+                    {% endif %}
+                    
+                    {% for n in payments.paginator.page_range %}
+                      {% if payments.number == n %}
+                        <li class="page-item active">
+                          <span class="page-link" >{{ n }}<span class="sr-only">(current)</span></span>
+                        </li>
+                      {% elif n > payments.number|add:'-3' and n < payments.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ n }}&search_string={{data}}">{{ n }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    
+                    {% if payments.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ payments.paginator.num_pages }}&search_string={{data}}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                          <span class="sr-only">end</span>
+                        </a>
+                      </li>
+                      {% endif %}   
+                  </ul> 
+                  </nav>
+                  
+                {% endif %}  
+          </div>
+      </div>  
+    </div>
+
+
+
+
+  </div>
+</div>
+
+<script>
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+  $(function () {
+    $('[data-toggle="popoverdel"]').popover()
+  })
+
+
+</script>
+
+
+{% endblock %}

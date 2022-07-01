@@ -1,0 +1,147 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+
+
+</style>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/secret">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> Add Teacher  </li>
+    </ol>
+    <div class="col-sm-6 offset-sm-3">
+        <div class="widget">
+          <div class="widget-header"> Add Teacher <i aria-hidden="true"></i></div>
+          <div class="widget-content ">
+          {% if  err_msg %}
+            <div class="alert alert-danger" id="err_msg" > {{err_msg}} </div>
+          {% endif %}
+
+          {% if msg %}
+            <div class="alert alert-success" id="msg" > {{msg}} </div>
+          {% endif %}
+
+            <form id ="add_user_form" method="post" class="post-form" enctype="multipart/form-data" onSsubmit="">
+
+              {% load rest_framework %}
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="fname">First Name</label>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="first_name" placeholder="first Name" name="first_name"
+                        required value='{{first_name}}'>
+                        {% for key in error_msg %}
+                          {% if key == 'first_name' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="lname">Last Name</label>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="last_name" placeholder="last Name" name="last_name"
+                        required value= '{{last_name}}'>
+                        {% for key in error_msg %}
+                        {% if key == 'last_name' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="phone">Phone</label>
+                    <div class="col-sm-12">
+                      <input type="number" min="0000000000" max="9999999999" class="form-control" id="username" placeholder="phone" name="phone"
+                        required value= '{{phone}}'>
+                        {% for key in error_msg %}
+                          {% if key == 'phone' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="fname">Email</label>
+                    <div class="col-sm-12">
+                      <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                        required value= "{{email}}">
+                         {% for key in error_msg %}
+                         {% if key == 'email' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                       {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="fname">Password</label>
+                    <div class="col-sm-12">
+                      <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                        required value= '{{password}}'>
+                        <input type="checkbox" onclick="show_password()">Show Password
+                        {% for key in error_msg %}
+                        {% if key == 'password' %}  <span class="err-block">Wrong Input</span> {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" >
+                <div class="col-sm-12" style="text-align:center">
+                  <input class ="btn btn-success" type="submit" value="Submit" >
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() { $("#msg").hide(); }, 3000);
+
+// toggle password visibility
+  function show_password() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+
+
+{% endblock %}

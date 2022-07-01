@@ -1,0 +1,306 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+<style>
+
+.required:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+.errorMsg{
+  color:red;
+}
+.hidden{
+    display:none;
+}
+
+</style>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> Add Schedule  </li>
+    </ol>
+    <div class="col-sm-6 offset-sm-3">
+        <div class="widget">
+          <div class="widget-header"> Add Schedule <i aria-hidden="true"></i></div>
+          <div class="widget-content ">
+            <div class="alert alert-danger hidden" id="err_msg" >  </div>
+            <div class="alert alert-success hidden" id="msg" >  </div>
+              {% if err_msg %}
+                <div class="alert alert-danger " id="err_msg" > {{err_msg}} </div>
+              {% endif %}
+            
+         
+
+            <form id ="add_course_form" method="post" class="post-form" enctype="multipart/form-data" onSsubmit="">
+
+              {% load rest_framework %}
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12 required" for="course_name">Course Name</label>
+                    <div class="col-sm-12">
+                      <select name="course_id" class="form-control" id="course_id" required>
+                        {% for course in all_courses %}
+                        <option value="{{course.id}}" >{{course.course_name}}</option>
+                        {% endfor %}
+                     </select>
+                     <span id="course_id-err" class="hidden errorMsg ">This  field is Required!</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ml-2 mb-5" id="added_days" ></div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12 required" for="day_of_week">Day</label>
+                    <div class="col-sm-12">
+                      <select name="day_of_week" class="form-control" id="day_of_week" required>
+                        <option value="1">Monday</option>
+                        <option value="2">Tuesday</option>
+                        <option value="3">Wednesday</option>
+                        <option value="4">Thursday</option>
+                        <option value="5">Friday</option>
+                        <option value="6">Saturday</option>
+                        <option value="7">Sunday</option>
+                     </select>
+                     <span id="day_of_week-err" class="hidden errorMsg ">This is Required!</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12 required" for="course_name">Start Time</label>
+                      <div class="input-group date datetimepicker_div" id="datetimepicker3" data-target-input="nearest">
+                          <input type="text" class="form-control datetimepicker-input" id="start_time" name="start_time"  data-target="#datetimepicker3"/>
+                          <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                              <div class="input-group-text"><i class="fas fa-clock"></i></div>
+                          </div>
+                      </div>
+                      <span id="start_time-err" class="hidden errorMsg ">This is Required!</span>
+                      <span id="start_time_invalid-err" class="hidden errorMsg ">Invalid Time</span>
+                  </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="control-label col-sm-12 required" for="course_name">End Time</label>
+                    <div class="input-group date datetimepicker_div" id="datetimepicker4" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input"  id="end_time" name="end_time"  data-target="#datetimepicker4"/>
+                        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fas fa-clock"></i></div>
+                        </div>
+                    </div>
+                    <span id="end_time-err" class="hidden errorMsg ">This is Required!</span>
+                </div>
+            </div>
+
+              </div>
+
+          
+              <div class="row" >
+                <div class="col-sm-12" style="text-align:center">
+                  <input id ="add_day" class ="btn btn-primary" type="button" value="Add day" >
+                </div>
+                </div>
+              </div>
+
+
+            </form>
+
+            <div class="table-responsive mt-5">
+              <table id="course_table" class = "table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+              <thead>
+                <tr>
+                  <th  style="text-align:center ">S.No</th>  
+                  <!-- <th>Deppt.ID</th>   -->
+                  <th  style="text-align:center ">Day</th>  
+                  <th  style="text-align:center ">Start Time </th>  
+
+                  <th  style="text-align:center ">End Time</th> 
+                  <th  style="text-align:center ">Actions</th>  
+              </thead>
+              <tbody>
+                {% for schedule in all_schedules %}  
+                  <tr id ="{{course.id}}">  
+                    <td  style="text-align:center ">{{forloop.counter}}</td>
+                    <td  style="text-align:center "> {{schedule.day_of_week__day}}</td>  
+                    <td  style="text-align:center "> {{schedule.start_time }}   </td>
+                    <td  style="text-align:center ">{{schedule.end_time }} </td> 
+                    <td  style="text-align:center ">  
+                    <button  id="{{schedule.id}}"  data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Edit Course"type="button" class="btn btn-outline-danger delete_schedule"><i class="fas fa-trash-alt"></i></button>
+                    </td>  
+                  </tr>  
+                {% endfor %}
+              </tbody> 
+            </table>
+
+          </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() { $("#msg").hide(); }, 3000);
+
+  $(function () {
+    $('.datetimepicker_div').datetimepicker({
+        format: 'LT'
+    });
+  });
+
+
+
+// ajax on delete
+
+$(".delete_schedule").on("click", function(event) {
+// console.log(this.id)
+$('#err_msg').addClass("hidden")
+var xhr = new XMLHttpRequest();
+    fdata = new FormData();
+    fdata.append("csrfmiddlewaretoken", $("[name=csrfmiddlewaretoken]").val())
+    fdata.append('id', this.id)
+    xhr.open("POST", "/secret/delete_schedule/");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.send(fdata);
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        
+          var c = this.response
+          console.log(c)
+          c = JSON.parse(c)
+          if (c['status'] == 200) {
+            setTimeout(function(){ location.reload(); }, 1000);
+          }
+          else{
+            $('#err_msg').html(c['message']);
+            $('#err_msg').removeClass("hidden").show();
+          }
+
+      }
+    })
+
+})
+
+
+
+//ajax on each new row added
+  $("#add_day").on("click", function(event) {
+
+    $('#err_msg').addClass("hidden")
+   
+    $('#course_id-err').addClass("hidden")
+    $('#msg').addClass("hidden")
+
+
+    var token =$('#token').attr('value')
+    var course_id =  $('#course_id').val().trim()
+    var day_of_week = $('#day_of_week').val().trim()
+    var start_time = $('#start_time').val().trim()
+    var end_time = $('#end_time').val().trim()
+    
+
+    if(course_id.length==0 ){ 
+        $('#course_id-err').show().removeClass("hidden");
+        return;
+    }
+    if(day_of_week.length==0 ){ 
+        $('#day_of_week-err').show().removeClass("hidden");
+        return;
+    }
+    if(start_time.length==0 ){ 
+        $('#start_time-err').show().removeClass("hidden");
+        return;
+    }
+    if(end_time.length==0 ){ 
+        $('#end_time-err').show().removeClass("hidden");
+        return;
+    }
+
+    var isValid_start_time = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9](AM|PM))?\s+?(AM|PM)$/.test(start_time);
+    var is_valid_end_time = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9](AM|PM))?\s+?(AM|PM)$/.test(end_time);
+    if(!isValid_start_time){
+      $('#start_time_invalid-err').show().removeClass("hidden");
+      return;
+    }
+    var selectedday = $("#day_of_week option:selected").html()
+    var selectedcourse = $("#course_id option:selected").html()
+    console.log(selectedday)
+
+    fdata = new FormData();
+    fdata.append("csrfmiddlewaretoken", $("[name=csrfmiddlewaretoken]").val())
+    fdata.append('day_of_week', day_of_week)
+    fdata.append('course_id', course_id)
+    fdata.append('start_time', start_time)
+    fdata.append('end_time', end_time)
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/secret/add_schedule_ajax/");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.send(fdata);
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          var c = this.response
+          c = JSON.parse(c)
+          console.log(c)
+
+          if (c['status'] == 200) {
+            $('#msg').html(c['message']);
+            $('#msg').removeClass("hidden").show();
+
+            $('p.error').remove();
+            setTimeout(function(){ location.reload(); }, 1000);
+
+
+            // $("#added_days").append( $( `<div class="col-sm-12"> <div class ="row"> <div class="col-sm-3">`+selectedcourse +` </div>
+            //         <div class="col-sm-3">`+selectedday +` </div> <div class="col-sm-3">`+start_time +` </div>
+            //         <div class="col-sm-3">`+end_time +` </div></div></div> `))
+          }
+          else{ 
+
+            $('p.error').remove();
+            $('#err_msg').html(c['message']);
+            $('#err_msg').removeClass("hidden").show();
+            error_msg = c['error_msg']
+            $.each(error_msg, function (key, val) {
+              console.log(key)
+              $(`[name=${key}]`).after(`<p class="error" style="color:red;background-color:#fff"> ${val} </p>`)
+
+            });
+
+          }
+        }
+
+    });
+
+
+
+
+
+
+  })
+
+
+
+</script>
+
+
+
+{% endblock %}

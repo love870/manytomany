@@ -1,0 +1,377 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+.hidden{
+     display:none;
+ }
+
+</style>
+<div class="abc">
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/secret">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> list User  </li>
+    </ol>
+
+    <div class="row">
+        <div class="widget">
+          <div class="widget-header">
+              <div class="row">
+                  <div class="col-md-4" style="display:block">
+                      <form class="mt-1" name="myform" method="POST" action="/secret/list_users/"> {% csrf_token %}
+                        <input class="form-control " id="search" type="text" name="search" placeholder="Search" {% if data %} value="{{data}}" {% else %}
+                        value="" {% endif %} onkeyup=sear()>
+                        <ul id="search-results">
+
+                        </ul>
+                      </form>
+                  </div>
+                  <div class="col-md-4" style="line-height: 44px;" >
+                    <form name="myform" method="GET" action="/secret/list_users/">
+                      <a class="btn btn-primary "  href="/secret/list_users/" style="background-color:#0e4797;color:white ">Reset</a>
+                    </form>
+                  </div>
+                  <div class= "col-md-4" style="line-height: 44px;text-align: right;" >
+                    <!-- <a class="btn btn-primary  ml-auto   " style="background-color:#0e4797;color:white "  href="/secret/add_user/">Add Teacher <i class="fa fa-user-plus" aria-hidden="true"></i></a> -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form">
+                      Add Teacher
+                    </button>  
+                  </div> 
+                </div>
+          </div>
+          <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                  <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form>
+                  <div class="modal-body">
+                    <form id ="add_user_form" method="post" class="post-form"  enctype="multipart/form-data" action="secret/add_user">
+
+          
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="control-label col-sm-12" for="fname">First Name</label>
+                            <div class="col-sm-12">
+                              <input type="text" class="form-control" id="first_name" placeholder="first Name" name="first_name"
+                                required value='{{first_name}}'>
+                                
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="control-label col-sm-12" for="lname">Last Name</label>
+                            <div class="col-sm-12">
+                              <input type="text" class="form-control" id="last_name" placeholder="last Name" name="last_name"
+                                required value= '{{last_name}}'>
+        
+                            </div>
+        
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="control-label col-sm-12" for="phone">Phone</label>
+                            <div class="col-sm-12">
+                              <input type="number" min="0000000000" max="9999999999" class="form-control" id="phone" placeholder="phone" name="phone"
+                                required value= '{{phone}}'>
+                               
+                            </div>
+        
+                          </div>
+                        </div>
+                      </div>
+        
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="control-label col-sm-12" for="fname">Email</label>
+                            <div class="col-sm-12">
+                              <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                                required value= "{{email}}">
+                               
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="control-label col-sm-12" for="fname">Password</label>
+                            <div class="col-sm-12">
+                              <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                                required value= '{{password}}'>
+                                <input type="checkbox" onclick="show_password()">Show Password
+                               
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" >
+                        <div class="col-sm-12" style="text-align:center">
+                          <input class ="btn btn-success" type="submit" value="Submit" id="submit_form" >
+                        </div>
+                      </div>
+                    </form>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div id = "title">
+            <span ></span>
+        </div>
+          <div class="widget-content">
+
+            {% if msg %}
+            <div class="alert alert-success" id="msg"  > {{msg}} </div>
+            {% endif %}
+
+            {% if err_msg %}
+            <div class="alert alert-danger" id="msg"  > {{err_msg}} </div>
+            {% endif %}
+
+            <div class="alert alert-success hidden" id="delete-success"  > User deleted successfully </div>
+            <div class="alert alert-danger hidden" id="delete-error"  > Something went wrong </div>
+
+              <div class="table-responsive">
+                  <table id="user_table" class = "table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+                  <thead>
+                    <tr>
+                      <th  style="text-align:center ">S.No</th>
+                      <!-- <th>Deppt.ID</th>   -->
+                      <th  style="text-align:center ">Name</th>
+                      <th  style="text-align:center ">Phone </th>
+
+                      <th  style="text-align:center ">Email</th>
+                      <th  style="text-align:center ">Role</th>
+
+                      <th  style="text-align:center ">Actions</th>
+                  </thead>
+                  <tbody>
+                    {% for user in users %}
+                      <tr id ="{{user.id}}">
+                        <td  style="text-align:center ">{{ users.start_index|add:forloop.counter0}}</td>
+                        <td  style="text-align:center "> {% if user.first_name  %}    {{user.first_name}} {{user.last_name}}   {% else %} ----{% endif %}</td>
+                        <td  style="text-align:center ">  {% if user.profile__phone  %} {{user.profile__phone }} {% else %}----{% endif %}</td>
+                        <td  style="text-align:center ">{{user.email }} </td>
+                        <td  style="text-align:center ">{{user.profile__role_id__role }} </td>
+
+                        <td  style="text-align:left">
+                            <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Edit" href="/secret/edit_user/{{ user.id }}"><i class="fas fa-user-edit fa-lg"></i></a>
+
+                            <label class="switch">
+                              <input class="root" id="{{user.id}}"    type="checkbox" {% if  user.is_active is True %}
+                              checked {% else %} unchecked {% endif %}>
+                              <span  data-toggle="popover" data-trigger="hover" data-placement="top" {% if  user.is_active is True %}
+                              data-content="Active user" {% else %} data-content="Inactive user" {% endif %} class="slider round" style="background-color:#2a72d2" ></span>
+                            </label>
+
+
+
+
+                        </td>
+                      </tr>
+                     
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+              </div>
+              </div>
+
+              {% if users %}
+                <nav aria-label="Page navigation ">
+                  <ul class="pagination justify-content-end ">
+                    {% if users.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link"   href="?page=1&search_string={{data}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">begin</span>
+                      </a>
+                    </li>
+                    {% endif %}
+
+                    {% for n in users.paginator.page_range %}
+                      {% if users.number == n %}
+                        <li class="page-item active">
+                          <span class="page-link" >{{ n }}<span class="sr-only">(current)</span></span>
+                        </li>
+                      {% elif n > users.number|add:'-3' and n < users.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ n }}&search_string={{data}}">{{ n }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% if users.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ users.paginator.num_pages }}&search_string={{data}}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                          <span class="sr-only">end</span>
+                        </a>
+                      </li>
+                      {% endif %}
+                  </ul>
+                  </nav>
+
+                {% endif %}
+          </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+<script>
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+  $(function () {
+    $('[data-toggle="popoverdel"]').popover()
+  })
+
+
+$(".root").on("click", function(event) {
+  var check_value=$(this).next()
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'true');
+    var toggle_status=1
+  }
+  else {
+    $(this).attr('value', 'false');
+    var toggle_status=0
+  }
+  console.log(toggle_status)
+   var token =$('#token').attr('value')
+   var id =  this.id
+   console.log(id)
+
+     $.ajax({
+      url: '/secret/delete_user/?id='+id+'&toggle_status='+toggle_status,
+           type: 'DELETE',
+           headers:{
+             "X-CSRFToken": token   },
+            success: function(response) {
+             if(response.status == 200){
+              if(toggle_status==1){
+                check_value.attr('data-content', 'Active user')
+               }
+               else{
+                check_value.attr('data-content', 'Inactive user')
+               }
+              }
+                },
+           error: function(error){
+            console.log(error)
+            }
+           });
+     });
+
+
+
+
+
+
+
+
+
+</script>
+
+<script>
+
+function sear(){
+
+  c = document.getElementById("search").value
+  console.log("trigger",c)
+
+
+
+  $.ajax({
+             type:"GET",
+             url:"",
+             data:{
+              suggestion: c
+             },
+             
+             success: function(data){
+                $('#user_table').html(data['html'])
+                },
+        });
+
+
+}
+
+</script>
+<script>
+ $('#submit_form').click(function() { 
+     
+      var first_name
+      var last_name
+      var phone
+      var email
+      var password
+      first_name=$("#first_name").val();
+     
+      last_name=$("#last_name").val();
+    
+      phone=$("#phone").val();
+      
+      email=$("#email").val();
+
+      password=$("#password").val();
+    
+      console.log(first_name, "firstname")
+
+      $.ajax({
+        type:"POST",
+        data:{
+          "firstname":first_name,
+          "lastname":last_name,
+          "phone":phone,
+          "email":email,
+          "password":password,
+          "csrfmiddlewaretoken":'{{csrf_token}}'
+        },
+
+       success:function(data){
+        alert("succesfully")
+
+        location.reload();
+       }
+      })
+
+    });
+
+        
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<div class="table-responsive">
+    <table id="filter_table" class="table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+        <thead>
+            <tr>
+                <th style="text-align:center ">S.No</th>
+                <!-- <th>Deppt.ID</th>   -->
+                <th style="text-align:center ">Name</th>
+                <!-- <th  style="text-align:center ">Duration </th>   -->
+
+                <th style="text-align:center ">Level</th>
+                <th style="text-align:center ">Weekly Price</th>
+                <th style="text-align:center ">Monthly Price</th>
+
+                <th style="text-align:center ">Actions</th>
+        </thead>
+        <tbody>
+    
+                  {% for course in x %}  
+                    <tr id ="{{course.id}}">  
+                      <td  style="text-align:center ">{{ courses.start_index|add:forloop.counter0}}</td>
+                      <td  style="text-align:center "> {{course.course_name}}</td>  
+                      <!-- <td  style="text-align:center "> {{ course.duration_value}} {{course.duration_period__duration}}   </td> -->
+                      <td  style="text-align:center ">{{ course.level__level }} </td> 
+
+                      <td  style="text-align:center ">${{course.price_per_week|floatformat }}</td>  
+
+                      <td  style="text-align:center ">${{course.price_per_month|floatformat }}</td>  
+                     
+
+                      <td  style="text-align:center ">  
+                          <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Edit Course" href="/secret/edit_course/{{ course.id }}"><i class="fas fa-user-edit fa-lg"></i></a> 
+
+                          <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Edit Schedule" href="/secret/edit_schedule/{{ course.id }}"><i class="fas fa-clipboard fa-lg"></i></a>
+                         
+                          <label class="switch ml-2">
+                            <input class="root" id="{{course.id}}"    type="checkbox" {% if course.is_active is True %}
+                            checked {% else %} unchecked {% endif %}>
+                            <span  data-toggle="popover" data-trigger="hover" data-placement="top" {% if course.is_active is True %}
+                            data-content="Active course" {% else %} data-content="Inactive course" {% endif %} class="slider round" style="background-color:#2a72d2" ></span>
+                          </label>
+                      </td>  
+                    </tr>  
+                  {% endfor %}
+                </tbody> 
+              </table>
+
+            </div>
+        </tbody>
+    </table>
+
+</div>
+</div>

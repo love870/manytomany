@@ -1,0 +1,167 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+.hidden{
+     display:none;
+ }
+
+ 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: -2px;
+  right: -2px;
+  bottom: 0;
+  background-color: #ccc!important;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 1px;
+  bottom: 2.7px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:10px;
+}
+
+input:checked + .slider {
+  background-color:#3e7fc1!important;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(46px);
+  -ms-transform: translateX(46px);
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+
+</style>
+<div >
+    <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/secret">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active"> Order Items  </li>
+        </ol>
+
+        <div class="row">
+            <div class="widget">
+                <div class="widget-content">
+                    {% if msg %}  
+                    <div class="alert alert-danger" id="msg"  > {{msg}} </div>
+                    {% endif %}  
+                
+                    <div class="table-responsive">
+                        <table id="course_table" class = "table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+                        <thead>
+                            <tr>
+                                <th  style="text-align:center ">S.No</th>  
+                                <th  style="text-align:center ">Course Name </th>  
+                                <th  style="text-align:center ">Course Price</th>  
+                                <th  style="text-align:center ">Course Duration</th> 
+                                <th  style="text-align:center ">Child Name</th>  
+                                <th  style="text-align:center ">Child Grade</th>
+                                <th  style="text-align:center ">Child Interests</th>
+                                <th  style="text-align:center ">Child Age</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order_item in order_items %}  
+                            <tr >  
+                                <td  style="text-align:center ">{{ order_items.start_index|add:forloop.counter0}}</td>
+                                <td  style="text-align:center "> {{order_item.course_id__course_name}}</td>  
+                                <td  style="text-align:center "> {{ order_item.course_price}}</td>
+                                <td  style="text-align:center ">{{ order_item.course_duration }} </td> 
+                                <td  style="text-align:center ">{{order_item.child_name }}</td>  
+                                <td  style="text-align:center ">{{order_item.child_grade }}</td>  
+                                <td  style="text-align:center ">{{order_item.child_interests }}</td>  
+                                <td  style="text-align:center ">{{order_item.child_age }}</td>  
+                            </tr>  
+                            {% endfor %}
+                        </tbody> 
+                        </table>
+
+                    </div>
+                </div>
+                
+                {% if order_items %}
+                    <nav aria-label="Page navigation ">  
+                    <ul class="pagination justify-content-end ">
+                        {% if order_items.has_previous %}
+                        <li class="page-item">
+                        <a class="page-link"   href="?page=1&search_string={{data}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">begin</span>
+                        </a>
+                        </li>  
+                        {% endif %}
+                        
+                        {% for n in order_items.paginator.page_range %}
+                        {% if order_items.number == n %}
+                            <li class="page-item active">
+                            <span class="page-link" >{{ n }}<span class="sr-only">(current)</span></span>
+                            </li>
+                        {% elif n > order_items.number|add:'-3' and n < order_items.number|add:'3' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ n }}&search_string={{data}}">{{ n }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        
+                        {% if order_items.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ order_items.paginator.num_pages }}&search_string={{data}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">end</span>
+                            </a>
+                        </li>
+                        {% endif %}   
+                    </ul> 
+                    </nav> 
+                {% endif %}  
+            </div>
+        </div>  
+    </div>
+</div>
+
+{% endblock %}

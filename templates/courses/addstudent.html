@@ -1,0 +1,178 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src='https://cdn.tiny.cloud/1/blp2k2kb8gpdb9hg2nun4p2ozezizsq18k1uvcr49extum8h/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+</script>
+<script>
+  tinymce.init({
+    selector: '#course_description'
+  });
+</script>
+
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+
+
+</style>
+<a class="nav-link" href="/secret/view_image/">
+  <i class="far fa-plus-square"></i>
+    <span>View Data</span>
+</a>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> Add Course  </li>
+      <li class="breadcrumb-item">
+        <a href="#">Add Student</a>
+      </li>
+    </ol>
+    <div class="col-sm-6 offset-sm-3">
+        <div class="widget">
+          <div class="widget-header"> Add Student <i aria-hidden="true"></i></div>
+          <div class="widget-content ">
+
+            <form id ="add_course_form" method="post" class="post-form" enctype="multipart/form-data" onSsubmit="">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+              {% load rest_framework %}
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="course_name">User Name</label>
+         
+                          <select name="username" class="form-control">
+                        
+                            {% for i in r  %}
+                              <option value="{{i.username}}">{{i.username}}</option>
+                  
+                             {% endfor %}
+                          </select>
+                  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+              <div class="row">
+                <div class="col-sm-12">
+              
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="level">First Name</label>
+                    <div class="col-sm-12">
+                      
+                        <input type="text" class="form-control" id="" placeholder="First Name" name="firstname"
+                        required value=''>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="course_name">Last Name</label>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="" placeholder="Last Name" name="lastname"
+                        required value=''>
+                        
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label class="control-label col-sm-12" for="course_name">password</label>
+                        <div class="col-sm-12">
+                          <input type="password" class="form-control" id="" placeholder="Password" name="password"
+                            required value=''>
+                            
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label class="control-label col-sm-12" for="course_name">Upload Image</label>
+                        <div class="col-sm-12">
+                       
+                          <input type="file" id="myfile" name="myfile">
+                            
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label class="control-label col-sm-12" for="course_name">Add courses Names</label>
+                        <div class="col-sm-12">
+                       
+                          <input type="text" class="form-control" id="" placeholder="Course Name" name="addcourses"
+                          required value=''>
+                            
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row" >
+                    <div class="col-sm-12" style="text-align:center">
+                      <input class ="btn btn-success" type="submit" value="Submit" >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+         
+             
+
+
+
+              
+
+
+              
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() { $("#msg").hide(); }, 3000);
+
+
+</script>
+
+
+
+{% endblock %}

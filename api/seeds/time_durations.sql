@@ -1,0 +1,1 @@
+INSERT INTO `time_periods` (`id`, `duration`,`is_active`) VALUES ('1', 'hours','1'), ('2', 'days','1'), ('3', 'weeks','1'), ('4', 'fortnight','1'), ('5', 'months','1'), ('6', 'years','1');

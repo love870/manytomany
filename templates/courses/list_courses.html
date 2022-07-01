@@ -1,0 +1,376 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+.hidden{
+     display:none;
+ }
+
+ 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: -2px;
+  right: -2px;
+  bottom: 0;
+  background-color: #ccc!important;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 1px;
+  bottom: 2.7px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:10px;
+}
+
+input:checked + .slider {
+  background-color:#3e7fc1!important;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(46px);
+  -ms-transform: translateX(46px);
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+
+</style>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/secret">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> list courses  </li>
+    </ol>
+    
+    <div class="row">
+        <div class="widget">
+          <div class="widget-header"> 
+              <div class="row">
+                  <div class="col-md-4" style="display:block">
+                      <form class="mt-1" name="myform" method="POST" action="/secret/list_courses/"> {% csrf_token %}
+                        <input class="form-control " id="search" type="text" name="search" placeholder="Search" {% if data %} value="{{data}}" {% else %}
+                        value="" {% endif %}>
+                      </form>
+                  </div>
+                  <div class="col-md-4" style="line-height: 44px;" >
+                    <form name="myform" method="GET" action="/secret/list_courses/">
+                      <a class="btn btn-primary "  href="/secret/list_courses/" style="background-color:#0e4797;color:white ">Reset</a>  
+                    </form>
+                  </div>
+                  <div class= "col-md-4" style="line-height: 44px;text-align: right;" >
+                    <a class="btn btn-primary  ml-auto   " style="background-color:#0e4797;color:white "  href="/secret/add_course/">Add Course <i class="fa fa-course-plus" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+          </div>
+          <div class="widget-content">
+
+            {% if msg %}  
+            <div class="alert alert-success" id="msg"  > {{msg}} </div>
+            {% endif %}  
+            
+            {% if err_msg %}  
+            <div class="alert alert-danger" id="msg2"  > {{err_msg}} </div>
+            {% endif %} 
+
+            <div class="alert alert-success hidden" id="delete-success"  > Course deleted successfully </div>
+            <div class="alert alert-danger hidden" id="delete-error"  > Something went wrong </div>
+
+              <div class="table-responsive">
+                  <table id="course_table" class = "table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+                  <thead>
+                    <tr>
+                      <th  style="text-align:center ">S.No</th>  
+                      <!-- <th>Deppt.ID</th>   -->
+                      <th  style="text-align:center ">Name</th>  
+                      <!-- <th  style="text-align:center ">Duration </th>   -->
+
+                      <th  style="text-align:center ">Level</th> 
+                      <th  style="text-align:center ">Weekly Price</th>  
+                      <th  style="text-align:center ">Monthly Price</th>
+
+                      <th  style="text-align:center ">Actions</th> 
+                      <th  style="text-align:center ">PDF</th>  
+                  </thead>
+                  <tbody>
+                    {% for course in courses %}  
+                      <tr id ="{{course.id}}">  
+                        <td  style="text-align:center ">{{ courses.start_index|add:forloop.counter0}}</td>
+                        <td  style="text-align:center "> {{course.course_name}}</td>  
+                        <!-- <td  style="text-align:center "> {{ course.duration_value}} {{course.duration_period__duration}}   </td> -->
+                        <td  style="text-align:center ">{{ course.level__level }} </td> 
+
+                        <td  style="text-align:center ">${{course.price_per_week|floatformat }}</td>  
+
+                        <td  style="text-align:center ">${{course.price_per_month|floatformat }}</td>  
+                       
+
+                        <td  style="text-align:center ">  
+                            <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Edit Course" href="/secret/edit_course/{{ course.id }}"><i class="fas fa-user-edit fa-lg"></i></a> 
+
+                            <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Edit Schedule" href="/secret/edit_schedule/{{ course.id }}"><i class="fas fa-clipboard fa-lg"></i></a>
+                           
+                            <label class="switch ml-2">
+                              <input class="root" id="{{course.id}}"    type="checkbox" {% if course.is_active is True %}
+                              checked {% else %} unchecked {% endif %}>
+                              <span  data-toggle="popover" data-trigger="hover" data-placement="top" {% if course.is_active is True %}
+                              data-content="Active course" {% else %} data-content="Inactive course" {% endif %} class="slider round" style="background-color:#2a72d2" ></span>
+                            </label>
+                        </td>  
+                        <td>
+                          <input id='{{course.id}}' 
+                          type='button' 
+                          value='View PDF'class='btn btn-primary viewpdf'
+                          target='_blank' >
+                          
+                        </td>
+                      </tr>  
+                    {% endfor %}
+                  </tbody> 
+                </table>
+
+              </div>
+              </div>
+      
+              
+              {% if courses %}
+                <nav aria-label="Page navigation ">  
+                  <ul class="pagination justify-content-end ">
+                    {% if courses.has_previous %}
+                    <li class="page-item">
+                      <a class="page-link"   href="?page=1&search_string={{data}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">begin</span>
+                      </a>
+                    </li>  
+                    {% endif %}
+                    
+                    {% for n in courses.paginator.page_range %}
+                      {% if courses.number == n %}
+                        <li class="page-item active">
+                          <span class="page-link" >{{ n }}<span class="sr-only">(current)</span></span>
+                        </li>
+                      {% elif n > courses.number|add:'-3' and n < courses.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ n }}&search_string={{data}}">{{ n }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    
+                    {% if courses.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ courses.paginator.num_pages }}&search_string={{data}}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                          <span class="sr-only">end</span>
+                        </a>
+                      </li>
+                      {% endif %}   
+                  </ul> 
+                  </nav>
+                  
+                {% endif %}  
+          </div>
+      </div>  
+    </div>
+
+ <div id="editor"></div>
+
+
+  </div>
+</div>
+
+<script>
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+  $(function () {
+    $('[data-toggle="popoverdel"]').popover()
+  })
+
+function delete_course(id){
+var token =$('#token').attr('value')
+   var id = id
+   console.log(id)
+
+
+    $.ajax({ 
+        url: '/secret/delete_course/?id='+id,
+        type: 'DELETE',
+        headers:{
+            "X-CSRFToken": token   },
+        success: function(response) {
+            if(response.status == 200){
+            console.log("Success")
+            $('table#course_table tr#'+id).remove();
+            $("#delete-success").removeClass('hidden')
+            setTimeout(function() { $("#delete-success").addClass('hidden'); }, 3000);
+            }            
+            },      
+        error: function(error){
+            $("#delete-error").removeClass('hidden')
+            setTimeout(function() { $("#delete-error").addClass('hidden'); }, 3000);
+        console.log(error)
+        }
+    });     
+
+}
+
+$(".root").on("click", function(event) {
+  var check_value=$(this).next()
+
+  if ($(this).is(':checked')) {
+    $(this).attr('value', 'true');
+    var toggle_status=1
+  }
+  else {
+    $(this).attr('value', 'false');
+    var toggle_status=0
+  }
+  console.log(toggle_status)
+   var token =$('#token').attr('value')
+   var id =  this.id
+   console.log(id)
+
+
+     $.ajax({ 
+      url: '/secret/delete_course/?id='+id+'&toggle_status='+toggle_status,
+           type: 'DELETE',
+           headers:{
+             "X-CSRFToken": token   },
+           success: function(response) {
+             if(response.status == 200){
+               if(toggle_status==1){
+                check_value.attr('data-content', 'Active course')
+               }
+               else{
+                check_value.attr('data-content', 'Inactive course')
+               }
+              
+              
+                      }            
+                },      
+           error: function(error){
+            console.log(error)
+            }
+           });     
+    
+
+     });
+
+
+
+
+</script>
+<script>
+  $(document).ready(function(){
+    $("#search").keyup(function(){
+      var result
+      result= $('#search').val()
+      
+     
+    
+      // alert(result)
+
+
+      $.ajax({
+
+        type:"GET",
+        url:"",
+        data:{'result':result},
+
+        success:function(data){
+          $('#course_table').html(data['html'])
+          // alert("Succefully")
+        }
+
+      });
+     
+    })
+  })
+
+</script>
+
+<script>
+$(document).ready(function(){
+  $('.viewpdf').click(function(){
+  // var doc = new jsPDF();
+  var get_viewpdf_id=  $(this).attr('id')
+  // alert(get_viewpdf_id)
+  // doc.fromHTML($('#course_table').html(), 15, 15, {
+  //       'width': 170,
+  //   });
+  //   doc.save('sample-file.pdf');
+
+  $.ajax({
+    url:'',
+    type:'GET',
+    data:{
+      'get_viewpdf_id':get_viewpdf_id
+    },
+    success:function(data){
+      // $("#course_table").html(data['html']);
+        alert("Succefully")
+        
+        }
+
+    
+
+  })
+  })
+})
+</script>
+<!-- <script>
+var doc = new jsPDF();
+$('.viewpdf').click(function () {
+    doc.fromHTML($('#course_table').html(), 15, 15, {
+        'width': 170,
+    });
+    doc.save('sample-file.pdf');
+});
+</script> -->
+
+
+{% endblock %}

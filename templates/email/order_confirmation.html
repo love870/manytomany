@@ -1,0 +1,15 @@
+Hello {% if first_name %}    {{first_name}} {{first_name}} {% else %} {% endif %}, <br><br>
+You have successfully registered  for the course name {{course_name}} for a {% if course_duration == "weekly" %} week {% else %}  month {% endif %} in course category - {{level}} with order id- {{order_id}} , <br>
+{% if coupon_code %} Applied coupon code - "{{coupon_code}}"  with discount of  {{discount_percentage}} percent {% endif %}<br>
+Your subscription date is {{selected_date}}<br>
+
+
+
+
+Registered Children Names-<br>
+    {% for data in order_details %}
+        {% if forloop.last %} {{data.child_name}} {%else%} {{data.child_name}},{% endif %}
+    {% endfor %}
+<br>
+Thankyou for being with us.<br>
+The Pillarz Team

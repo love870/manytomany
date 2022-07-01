@@ -1,0 +1,194 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+.hidden{
+     display:none;
+ }
+
+ 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: -2px;
+  right: -2px;
+  bottom: 0;
+  background-color: #ccc!important;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 1px;
+  bottom: 2.7px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:10px;
+}
+
+input:checked + .slider {
+  background-color:#3e7fc1!important;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(46px);
+  -ms-transform: translateX(46px);
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+
+</style>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/secret">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> list classes  </li>
+    </ol>
+    
+    <div class="row">
+        <div class="widget">
+          <div class="widget-header"> 
+          Class details
+          </div>
+          <div class="widget-content">
+
+            {% if msg %}  
+            <div class="alert alert-success" id="msg"  > {{msg}} </div>
+            {% endif %}  
+            
+            {% if err_msg %}  
+            <div class="alert alert-danger" id="msg2"  > {{err_msg}} </div>
+            {% endif %} 
+
+           
+              <div class="table-responsive">
+                  <table id="course_table" class = "table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+                  <thead>
+                    <tr>
+                      <th  style="text-align:center ">S.No</th>  
+                      <th  style="text-align:center ">course Name</th>  
+                      <th  style="text-align:center ">Level</th>  
+                      <th  style="text-align:center "> Date </th>  
+                      <th  style="text-align:center ">Day</th>
+                      <th  style="text-align:center ">Teacher Name</th>
+                      
+                      <th  style="text-align:center ">Grade</th>
+
+                  </thead>
+                  <tbody>
+                    {% for class in course_class %}  
+                      <tr id ="{{course.id}}">  
+                        <td  style="text-align:center ">{{ forloop.counter}}</td>
+                        <td  style="text-align:center "> {{class.course_id__course_name}}</td>  
+                        <td  style="text-align:center "> {{class.course_id__level_id__level}}</td>  
+                        <td  style="text-align:center "> {{ class.class_date}}    </td>
+                        <td  style="text-align:center ">{{class.day_of_week__day }}</td>  
+                        <td  style="text-align:center ">  {% if class.teacher_id__first_name   %}  {{class.teacher_id__first_name }}       {{class.teacher_id__last_name }}  {% else %}  ---- {% endif %}  </td>
+                        
+                        <td  style="text-align:center ">{{class.class_grade }}</td> 
+
+                      </tr>  
+                    {% endfor %}
+                  </tbody> 
+                </table>
+
+              </div>
+
+              <div class="widget-header mt-5"> 
+                Students Info
+                </div>
+
+              <div class="table-responsive ">
+                <table id="course_table" class = "table table-striped col-md-12  table-hover table-bordered" style="border:1px">
+                <thead>
+                  <tr>
+                    <th  style="text-align:center ">S.No</th>  
+                    <th  style="text-align:center ">Child Name</th>  
+                    <th  style="text-align:center "> Child age </th>  
+                    <th  style="text-align:center ">Child Interest</th>
+                    <th  style="text-align:center ">Duration</th>
+                </thead>
+                <tbody>
+                  {% for child in children %}  
+                    <tr>  
+                      <td  style="text-align:center ">{{ forloop.counter}}</td>
+                      <td  style="text-align:center "> {{child.child_name}}</td>  
+                      <td  style="text-align:center "> {{ child.child_age}}    </td>
+                      <td  style="text-align:center ">{{child.child_interests }}</td>  
+                      <td  style="text-align:center "> {{child.course_duration}}  </td>
+                      
+
+                    </tr>  
+                  {% endfor %}
+                </tbody> 
+              </table>
+
+            </div>
+
+
+          </div>
+              
+
+          </div>
+      </div>  
+    </div>
+
+
+
+
+  </div>
+</div>
+
+<script>
+    $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+  $(function () {
+    $('[data-toggle="popoverdel"]').popover()
+  })
+
+</script>
+
+
+{% endblock %}

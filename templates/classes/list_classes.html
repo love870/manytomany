@@ -1,0 +1,397 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+  label:after {
+    content: '*';
+    color: red;
+  }
+
+  .err-block {
+    color: red;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: -2px;
+    right: -2px;
+    bottom: 0;
+    background-color: #ccc !important;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 1px;
+    bottom: 2.7px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 10px;
+  }
+
+  input:checked+.slider {
+    background-color: #3e7fc1 !important;
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(46px);
+    -ms-transform: translateX(46px);
+    transform: translateX(21px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+</style>
+<div>
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/secret">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> list classes </li>
+    </ol>
+
+    <div class="row">
+      <div class="widget">
+        <div class="widget-header">
+          <div class="row">
+           
+            <div class="col-md-4" style="display:block">
+              <form class="mt-1" name="myform" method="POST" action="/secret/list_classes/"> {% csrf_token %}
+                <input class="form-control " type="text" name="search" placeholder=search{% if data %}
+                  value="{{data}}" {% else %} value="" {% endif %}>
+              </form>
+            </div>
+            <div class="col-md-2" style="line-height: 44px;">
+              <form name="myform" method="GET" action="/secret/list_classes/">
+                <a class="btn btn-primary " href="/secret/list_classes/"
+                  style="background-color:#0e4797;color:white ">Reset</a>
+              </form>
+            </div>
+            <div class="col-md-3">
+              <input type="date" id="date" name="date">
+              <!-- <button id="submit">Submit</button> -->
+            </div>
+            <div class="col-md-3" style="line-height: 44px;">
+              
+          
+            
+              <select name="sort" class="form-control" id="sort">
+                <option disabled selected>Sort by</option>
+                      
+                <option value="asc" name="asc">
+                  Ascending</option>
+              <option value="desc"  name="desc">
+                  Descending</option>
+              
+            </select>
+            
+            </div>
+          </form>
+
+          </div>
+        </div>
+        <div class="widget-content">
+
+          {% if msg %}
+          <div class="alert alert-success" id="msg"> {{msg}} </div>
+          {% endif %}
+
+          {% if err_msg %}
+          <div class="alert alert-danger" id="msg2"> {{err_msg}} </div>
+          {% endif %}
+
+          <div class="alert alert-success hidden" id="delete-success"> Course deleted successfully </div>
+          <div class="alert alert-danger hidden" id="delete-error"> Something went wrong </div>
+
+          <div class="table-responsive">
+            <table id="course_table" class="table table-striped col-md-12  table-hover table-bordered"
+              style="border:1px">
+              <thead>
+                <tr>
+                  <th style="text-align:center ">S.No</th>
+                  <th style="text-align:center "> Class ID</th>
+                  <th style="text-align:center "> Course Name</th>
+                  <th style="text-align:center ">Date </th>
+                  <th style="text-align:center ">Start Time</th>
+                  <th style="text-align:center ">End Time</th>
+                  <th style="text-align:center ">Day</th>
+                  <th style="text-align:center ">Section</th>
+
+                  <th style="text-align:center ">Teacher Name</th>
+                  <th style="text-align:center ">Grade</th>
+                  <th style="text-align:center ">No. of students</th>
+                  <th style="text-align:center ">Details</th>
+                  <th style="text-align:center ">STATUS</th>
+
+
+              </thead>
+              <tbody>
+                {% for class in classes %}
+                <tr id="{{course.id}}">
+                  <td style="text-align:center ">{{ classes.start_index|add:forloop.counter0}}</td>
+                  <td style="text-align:center ">#{{class.id }}</td>
+                  <td style="text-align:center "> {{class.course_id__course_name}}</td>
+                  <td style="text-align:center "> {{ class.class_date}} </td>
+                  <td style="text-align:center ">{{ class.start_time }} </td>
+                  <td style="text-align:center ">{{class.end_time }}</td>
+                  <td style="text-align:center ">{{class.day_of_week__day }}</td>
+                  <td style="text-align:center ">{{class.section }}</td>
+
+                  <td style="text-align:center "> {% if class.teacher_id__first_name %} {{class.teacher_id__first_name
+                    }} {{class.teacher_id__last_name }} {% else %} ----- {% endif %} </td>
+                  <td style="text-align:center ">{{class.class_grade }}</td>
+                  <td style="text-align:center ">{{class.reserved_seats }}</td>
+                  <td style="text-align:center; display: flex;">
+                    <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover"
+                      data-placement="top" data-content="Class details" href="/secret/class_details/{{ class.id }}"><i
+                        class="fas fa-clipboard fa-lg"></i></a>
+                    <a class="ml-2" style="color:#0e4797 " data-toggle="popover" data-trigger="hover"
+                      data-placement="top" data-content="Edit Class" href="/secret/class_edit/{{ class.id }}/"><i
+                        class="fas fa-user-edit fa-lg"></i></a>
+                  </td>
+
+
+                  <td>
+             
+                    <label class="switch"> 
+                      <!-- <input type="checkbox"  id="{{class.id}}" class="checkbox {% if player.player_check %} checked{% endif %}"> -->
+                      <input type="checkbox"  id="{{class.id}}" class="checkbox" {% if class.status == 1 %}
+                      checked {% elif class.status == 0 %} unchecked {% endif %}>        
+                      <div class="slider round"></div>
+                    </label>
+                  </td>
+
+
+                
+               
+
+               
+
+                
+
+
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        {% if classes %}
+        <nav aria-label="Page navigation ">
+          <ul class="pagination justify-content-end ">
+            {% if classes.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1&search_string={{data}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">begin</span>
+              </a>
+            </li>
+            {% endif %}
+
+            {% for n in classes.paginator.page_range %}
+            {% if classes.number == n %}
+            <li class="page-item active">
+              <span class="page-link">{{ n }}<span class="sr-only">(current)</span></span>
+            </li>
+            {% elif n > classes.number|add:'-3' and n < classes.number|add:'3' %} <li class="page-item"><a
+                class="page-link" href="?page={{ n }}&search_string={{data}}">{{ n }}</a></li>
+              {% endif %}
+              {% endfor %}
+
+              {% if classes.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ classes.paginator.num_pages }}&search_string={{data}}"
+                  aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">end</span>
+                </a>
+              </li>
+              {% endif %}
+          </ul>
+        </nav>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+</div>
+
+
+
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+  $(function () {
+    $('[data-toggle="popoverdel"]').popover()
+  })
+
+</script>
+
+<!-- CHECKBOX CHECK OR UNCHEKED -->
+<script>
+   $(".checkbox").change(function(event) {
+   
+    if ($(this).is(":checked")) {
+    
+      var home = 1;
+        alert(home)
+    
+    }
+    else if($(this).not(":checked")){
+      var home = 0;
+        alert(home)
+
+    }
+           
+            
+       
+    get_id = $(this).attr('id');
+    alert(get_id)
+    $.ajax({
+      url: '',
+      type: 'get',
+      data: {
+              get_id: get_id,
+              home: home
+            },
+
+        success: function(data){
+            // alert("data")
+          
+         }
+     
+     });
+});
+
+</script>
+  
+
+<!-- FILTER BY ASCENDING OR DESCENDING ORDER -->
+
+<script>
+  $(document).ready(function(){
+    $("#sort").on('change', function(){
+      var result = $('#sort').val();
+      // if (sortid=="asc"){
+      //   alert("Asc")
+
+      // }if(sortid=="desc"){
+      //   alert("desc")
+      // }
+      // alert(result)
+
+      $.ajax({
+        type:'get',
+        url:'',
+        data:{
+          "result":result
+        },
+        success:function(data){ 
+          $('#course_table').html(data['html'])
+          // alert("succesfully")
+       }
+      })
+     
+    })
+  })
+</script>
+
+<script>
+  $(document).ready(function(){
+    var a=$('#date').val('')
+    $('#date').change(function(){
+   var date = new Date($('#date').val());
+   var day = date.getDate();
+   var month = date.getMonth() + 1;
+   var year = date.getFullYear();
+   var result=([year, month, day].join('-'));
+  //  alert(result)
+
+   $.ajax({
+    url:'',
+    type:'get',
+    data:{
+      "result":result
+    },
+    success:function(data){
+      $('#course_table').html(data['html'])
+      // alert("Succesully")
+    }
+
+   })
+    })
+  })
+
+// var date_input = document.getElementById('date');
+// date_input.valueAsDate = null;
+
+
+// date_input.onchange = function(){
+//    var result=(this.value);
+//    console.log(result);
+
+//    $.ajax({
+//     url:'',
+//     type:'get',
+//     data:{
+//       "result":result
+//     },
+//     success:function(data){
+//       $('#course_table').html(data['html'])
+//       alert("Succesully")
+//     }
+
+//    })
+//     }
+
+</script>
+
+
+
+
+
+
+{% endblock %}

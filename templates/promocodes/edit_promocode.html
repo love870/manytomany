@@ -1,0 +1,437 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src='https://cdn.tiny.cloud/1/blp2k2kb8gpdb9hg2nun4p2ozezizsq18k1uvcr49extum8h/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+      $( ".datepicker" ).datepicker();
+    } );
+    </script>
+
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+
+/* .ui-datepicker { 
+  margin-left: 10%;
+  z-index: 1000;
+}
+ */
+
+</style>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="/secret">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="/secret/list_promocodes">Promocodes</a>
+      </li>
+      <li class="breadcrumb-item active"> Edit Coupon  </li>
+    </ol>
+    <div class="col-sm-6 offset-sm-3">
+        <div class="widget">
+          <div class="widget-header"> Edit Coupon <i aria-hidden="true"></i></div>
+          <div class="widget-content ">
+            <div class="alert alert-success" id="url_msg" style= "display:none" > </div>
+
+          {% if  err_msg %}
+            <div class="alert alert-danger" id="err_msg" > {{err_msg}} </div>
+          {% endif %}
+
+          {% if msg %}
+            <div class="alert alert-success" id="msg" > {{msg}} </div>
+          {% endif %}
+          
+                {% if promocode_object.used_count == 0 %}
+                    <form id ="add_course_form" method="post" class="post-form" enctype="multipart/form-data" onSsubmit="">
+
+                    {% load rest_framework %}
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-12" for="course_name">Unique Code</label>
+                            <div class="col-sm-12">
+
+                            <input type="text" class="form-control" id="code" placeholder="Unique Code" name="code"
+                                required 
+                                {% if success == 0 %}
+                                    value='{{code}}'
+                                {% else %}
+                                    value= "{{promocode_object.code}}"
+                                {% endif %}
+                                >
+                                {% for key in error_msg %}
+                                {% if key == 'code' %}  <span class="err-block">Coupon Code name must be unique! </span>   {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-12" for="price_per_week">Discount Percentage</label>
+                            <div class="col-sm-12">
+                            <input type="number"  min="0"  class="form-control" id="discount_percentage" placeholder="Discount Percentage" name="discount_percentage"
+                                required 
+                                {% if success == 0 %}
+                                    value= '{{discount_percentage}}'
+                                {% else %}
+                                    value= "{{promocode_object.discount_percentage}}"
+                                {% endif %}
+                                >
+                                {% for key in error_msg %}
+                                {% if key == 'discount_percentage' %}  <span class="err-block">A valid number expected!</span>   {% endif %}
+                            {% endfor %}
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-12" for="level">Coupon duration</label>
+                            <div class="col-sm-12">
+                            <select name="course_duration" class="form-control" id="course_duration" required>
+                                {% if success == 0 %}
+                                    <option value="weekly" {% if course_duration == 'weekly' %} Selected   {% endif %} >Weekly</option>
+                                    <option value="monthly"{% if course_duration == 'monthly' %} Selected   {% endif %}>Monthly</option>
+                                {% else %}
+                                    <option value="weekly" {% if promocode_object.course_duration == 'weekly' %} Selected   {% endif %} >Weekly</option>
+                                    <option value="monthly"{% if promocode_object.course_duration == 'monthly' %} Selected   {% endif %}>Monthly</option>
+                                {% endif %}
+                            </select>
+                                {% for key in error_msg %}
+                                {% if key == 'course_duration' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                            {% endfor %}
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-12" for="price_per_week">Start Date</label>
+                            <div class="col-sm-12">
+                            <input type="text"   class="form-control datepicker" id="start_date" placeholder="mm/dd/yyy" name="start_date"
+                                required {% if success == 0 %} value= '{{start_date}}' 
+                                {% else %}  value= '{{promocode_object.start_date}}'  {% endif %}>
+                                {% for key in error_msg %}
+                                {% if key == 'start_date' %}  <span class="err-block">A valid date is required!</span>   {% endif %}
+                            {% endfor %}
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-12" for="price_per_week">End date</label>
+                            <div class="col-sm-12">
+                            <input type="text"   class="form-control datepicker" id="end_date" placeholder="mm/dd/yyy" name="end_date"
+                                required {% if success == 0 %} value= '{{end_date}}' 
+                                {% else %}  value= '{{promocode_object.end_date}}'  {% endif %}>
+                                {% for key in error_msg %}
+                                {% if key == 'end_date' %}  <span class="err-block">A valid date required!</span>   {% endif %}
+                            {% endfor %}
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label col-sm-12" for="level">Course Name</label>
+                            <div class="col-sm-12">
+                            <select name="course_id" class="form-control" id="course_id" required>
+                                {% for course in all_courses %}
+                                <option value="{{course.id}}"
+                                
+                                {% if success == 0 %}
+                                    {% if course.id == course_id %}   Selected  {% endif %} 
+                                {% else %}
+
+                                {% if course.id == promocode_object.course_id %}   Selected  {% endif %} 
+                                {% endif %}
+                                
+                                
+                                >{{course.level__level}} -- {{course.course_name}}  </option>
+
+                                {% endfor %}
+                            </select>
+                                {% for key in error_msg %}
+                                    {% if key == 'course_id' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            <label class="control-label col-sm-12" for="level">Active</label>
+                            <div class="col-sm-12">
+
+                                <select name="is_active" class="form-control" id="is_active" required >
+                                    {% if success == 1 %}
+                                    <option value="0" {% if promocode_object.is_active is False %} selected  {% endif %}  >Inactive</option>
+                                    <option value="1"    {% if promocode_object.is_active is True %} selected  {% endif %}>Active</option>
+                                    {% else %}
+                                    <option value="0" {% if is_active == 0 %} selected  {% endif %}  >Inactive</option>
+                                    <option value="1"    {% if is_active == 1  %} selected  {% endif %}>Active</option>
+
+                                    {% endif %}
+                                  
+                                </select>
+
+
+                              
+                           
+                           
+                            </div>
+        
+                            </div>
+                        </div>
+                        </div>
+
+
+
+                    <div class="row" >
+                        <div class="col-sm-12" style="text-align:center">
+                        <input class ="btn btn-success" type="submit" value="Submit" >
+                        </div>
+                    </div>
+
+
+                    </form>
+
+                {% else %}
+                    <form id ="add_course_form" method="post" class="post-form" enctype="multipart/form-data" onSsubmit="">
+
+                        {% load rest_framework %}
+                        {% csrf_token %}
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            <label class="control-label col-sm-12" for="course_name">Unique Code</label>
+                            <div class="col-sm-12">
+        
+                                <input type="text" class="form-control" id="code" placeholder="Unique Code" name="code"
+                                 value='{{ promocode_object.code}}' readonly="readonly">
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+    
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            <label class="control-label col-sm-12" for="price_per_week">Discount Percentage</label>
+                            <div class="col-sm-12">
+                                <input type="number"  class="form-control" id="discount_percentage" placeholder="Discount Percentage" name="discount_percentage"
+                                 value= '{{promocode_object.discount_percentage}}' readonly="readonly">
+                            </div>
+        
+                            </div>
+                        </div>
+                        </div>
+        
+        
+        
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            <label class="control-label col-sm-12" for="level">Coupon duration</label>
+                            <div class="col-sm-12">
+                                <select name="course_duration" class="form-control" id="course_duration"  readonly="readonly">
+                                <option value="">{{promocode_object.course_duration}}</option>
+                            </select>
+                            </div>
+        
+                            </div>
+                        </div>
+                        </div>
+        
+        
+        
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            <label class="control-label col-sm-12" for="price_per_week">Start Date</label>
+                            <div class="col-sm-12">
+                                <input type="text"   class="form-control datepicker" id="start_date" placeholder="mm/dd/yyy" name="start_date"
+                                {% if success == 1 %} value= '{{promocode_object.start_date}}' 
+                                {% else %}  value= '{{start_date}}'  {% endif %}
+                                required
+                                >
+                                 {% for key in error_msg %}
+                                 {% if key == 'start_date' %}  <span class="err-block">A valid date required!</span>   {% endif %}
+                                {% endfor %}
+                            </div>
+        
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            <label class="control-label col-sm-12" for="price_per_week">End date</label>
+                            <div class="col-sm-12">
+                                <input type="text"   class="form-control datepicker" id="end_date" placeholder="mm/dd/yyy" name="end_date"
+                                required    
+                                {% if success == 1 %}
+                                    value= '{{promocode_object.end_date}}' 
+                                {% else %}  value= '{{end_date}}'  {% endif %}
+
+                                >
+                                {% for key in error_msg %}
+                                    {% if key == 'end_date' %}  <span class="err-block">A valid date required!</span>   {% endif %}
+                                {% endfor %}
+                            </div>
+        
+                            </div>
+                        </div>
+                        </div>
+        
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                            <label class="control-label col-sm-12" for="level">Course Name</label>
+                            <div class="col-sm-12">
+                                <select name="course_id" class="form-control" id="course_id" readonly ="readonly">
+                                <option value="">{{promocode_object.course_id__level__level}} -- {{promocode_object.course_id__course_name}}</option>
+                              
+                            </select>
+                            </div>
+        
+                            </div>
+                        </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                <label class="control-label col-sm-12" for="level">Active</label>
+                                <div class="col-sm-12">
+
+                                    <select name="is_active" class="form-control" id="is_active" required >
+                                        {% if success == 1 %}
+                                        <option value="0" {% if promocode_object.is_active is False %} selected  {% endif %}  >Inactive</option>
+                                        <option value="1"    {% if promocode_object.is_active is True %} selected  {% endif %}>Active</option>
+                                        {% else %}
+                                        <option value="0" {% if is_active == 0 %} selected  {% endif %}  >Inactive</option>
+                                        <option value="1"    {% if is_active == 1  %} selected  {% endif %}>Active</option>
+
+                                        {% endif %}
+                                      
+                                    </select>
+
+
+                                  
+                               
+                               
+                                </div>
+            
+                                </div>
+                            </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                        <div class="row" >
+                        <div class="col-sm-12" style="text-align:center">
+                            <input class ="btn btn-success" type="submit" value="Submit" >
+                        </div>
+                        </div>
+        
+
+        
+                    </form>
+
+                {% endif %}
+
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+    $( ".datepicker" ).datepicker({ minDate: 0});
+    $('.datepicker').on('focus',function(){
+            $(this).attr('autocomplete', 'off');
+        });
+  setTimeout(function() { $("#msg").hide(); }, 5000);
+
+
+
+  $(document).ready(function() {
+  var x= findGetParameter('msg')
+  console.log(x)
+  $("#url_msg").html(x)
+  if(x!=null){
+  $("#url_msg").show();
+  setTimeout(function() { $("#url_msg").hide(); }, 7000);
+  }
+
+
+
+  function findGetParameter(parameterName) {
+  var result = null,
+  tmp = [];
+  var items = location.search.substr(1).split("&");
+  console.log(items)
+  for (var index = 0; index < items.length; index++) {
+    tmp = items[index].split("=");
+    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+  }
+  return result;
+  }
+
+  });
+</script>
+
+
+
+
+
+
+
+{% endblock %}

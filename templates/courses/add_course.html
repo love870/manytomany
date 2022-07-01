@@ -1,0 +1,229 @@
+{% extends 'secret/layout.html' %}
+{% block content %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src='https://cdn.tiny.cloud/1/blp2k2kb8gpdb9hg2nun4p2ozezizsq18k1uvcr49extum8h/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+</script>
+<script>
+  tinymce.init({
+    selector: '#course_description'
+  });
+</script>
+
+<style>
+
+label:after{
+  content:'*';
+  color:red;
+}
+
+.err-block{
+  color:red;
+}
+
+
+</style>
+<div >
+  <input id="token" type="text" name="csrfmiddlewaretoken" value="{{csrf_token}}" style="display:none">
+  <div class="container-fluid">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active"> Add Course  </li>
+      <li class="breadcrumb-item">
+        <a href="#">Add Schedule</a>
+      </li>
+    </ol>
+    <div class="col-sm-6 offset-sm-3">
+        <div class="widget">
+          <div class="widget-header"> Add Course <i aria-hidden="true"></i></div>
+          <div class="widget-content ">
+          {% if  err_msg %}
+            <div class="alert alert-danger" id="err_msg" > {{err_msg}} </div>
+          {% endif %}
+
+          {% if msg %}
+            <div class="alert alert-success" id="msg" > {{msg}} </div>
+          {% endif %}
+
+            <form id ="add_course_form" method="post" class="post-form" enctype="multipart/form-data" onSsubmit="">
+
+              {% load rest_framework %}
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="course_name">Course Name</label>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="course_name" placeholder="Course Name" name="course_name"
+                        required value='{{course_name}}'>
+                        {% for key in error_msg %}
+                          {% if key == 'course_name' %}  <span class="err-block"> Course name must be unique! </span>   {% endif %}
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="duration_value">Course Duration</label>
+                    <div class="col-sm-12">
+                      <input type=number min="0" class="form-control" id="duration_value" placeholder="Course duration" name="duration_value"
+                        required value= '{{duration_value}}'>
+                        {% for key in error_msg %}
+                        {% if key == 'duration_value' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="duration_period">Duration Unit</label>
+                    <div class="col-sm-12">
+                        <select name="duration_period" class="form-control" id="exampleFormControlSelect1" required>
+                           <option value="" >-------</option>
+                            {% for unit in time_obj %}
+                            <option value="{{unit.id}}"{% if duration_period == unit.id  %} Selected {%endif%}>{{unit.duration}}</option>
+                            {% endfor %}
+                        </select>
+                        {% for key in error_msg %}
+                        {% if key == 'duration_period' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+
+              </div> -->
+
+
+              <!-- <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="price_per_week">Duration to display</label>
+                    <div class="col-sm-12">
+                      <select name="free_duration" class="form-control" id="free_duration" required>
+                        <option value="">-------</option>
+                        <option value="1 month" {% if free_duration == 0 %} Selected {% endif %}>1 month</option>
+                        <option value="2 month" {% if free_duration == 1 %} Selected {% endif %}>2 months</option>
+                        <option value="3 month" {% if free_duration == 2 %} Selected {% endif %}>3 months</option>
+                        <option value="6 month" {% if free_duration == 3 %} Selected {% endif %}>6 months</option>
+                        <option value="1 year" {% if free_duration == 4 %} Selected {% endif %}>1 year</option>  -->
+
+                      <!-- <input type="text"  class="form-control" id="free_duration" placeholder="duration to display" name="free_duration"
+                        required value= '{{free_duration}}'>  -->
+                        <!-- {% for key in error_msg %}
+                          {% if key == 'free_duration' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                      </select>
+                    </div>
+
+                  </div>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="level">Course Level</label>
+                    <div class="col-sm-12">
+                      <select name="level" class="form-control" id="level" required>
+                        <option value="">-------</option>
+                         <!-- <option value="1">Hours</option>
+                         <option value="2">Days</option> -->
+                        
+                         {% for levels in level_obj %}
+                         <option value="{{levels.id}}">{{levels.level}}</option>
+                         {% endfor %}
+
+                     </select>
+                        {% for key in error_msg %}
+                          {% if key == 'level' %} <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="price_per_week">Weekly Price($)</label>
+                    <div class="col-sm-12">
+                      <input type="number" step="0.01" min="0"  class="form-control" id="price_per_week" placeholder="price per week" name="price_per_week"
+                        required value= '{{price_per_week}}'>
+                        {% for key in error_msg %}
+                          {% if key == 'price_per_week' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="price_per_month">Monthly Price($)</label>
+                    <div class="col-sm-12">
+                      <input type="number" step="0.01" min="0"  class="form-control" id="price_per_month" placeholder="price per month" name="price_per_month"
+                        required value= '{{price_per_month}}'>
+                        {% for key in error_msg %}
+                          {% if key == 'price_per_month' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                      {% endfor %}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+         
+
+
+
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label class="control-label col-sm-12" for="fname">Description</label>
+                    <div class="col-sm-12">
+                      <textarea id="course_description" name="course_description">
+                       {{course_description}}
+                      </textarea>
+                         {% for key in error_msg %}
+                         {% if key == 'course_description' %}  <span class="err-block">Wrong Input</span>   {% endif %}
+                       {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row" >
+                <div class="col-sm-12" style="text-align:center">
+                  <input class ="btn btn-success" type="submit" value="Submit" >
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() { $("#msg").hide(); }, 3000);
+
+
+</script>
+
+
+
+{% endblock %}

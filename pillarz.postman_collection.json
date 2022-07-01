@@ -1,0 +1,3931 @@
+{
+	"info": {
+		"_postman_id": "543620e4-93da-4a6c-b63f-9af822825904",
+		"name": "pillarz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\":\"rsingh1509.cse15@chitkara.edu.in\",\"secret\":\"123456\",\"google\":0}"
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/login/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login pass google",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"rahul.bhola.softprodigy@gmail.com\",\"google\":1}"
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/login/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 07:30:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "256"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"6e7b7fca9af6a2df20c134fecbecd1c763e0659b\",\n        \"id\": 17,\n        \"username\": \"rahul.bhola.softprodigy\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahul.bhola.softprodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true\n    }\n}"
+						},
+						{
+							"name": "login fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"user1\",\"secret\":\"user1s\",\"google\":0}"
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/login/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 10:05:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Failed\"\n    }\n}"
+						},
+						{
+							"name": "login pass email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"rahulsps\",\"secret\":\"rahul123\",\"google\":0}"
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/login/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 07:26:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "230"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"b45a3ea3054295b4cb0c2e246014292312697dc9\",\n        \"id\": 16,\n        \"username\": \"rahulsps\",\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"email\": \"rahulbhola.softprodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "4506b2b473c861531f2d2bc00fd5756137d7adbe",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/logout/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "logout pass",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "22f1238ab338b30b4aee09423f85d4241eb85b2b",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/logout/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"logout",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 10:11:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Logged out!\"\n    }\n}"
+						},
+						{
+							"name": "logout fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "b0dddac5d7b985c246474eb5f214d4eba5cac749",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/logout/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"logout",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 10:11:14 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 403,\n    \"data\": {\n        \"message\": \"Not Logged In!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"rsingh1509.cse15@chitkara.edu.in\",\n    \"password\":\"123456\",\n    \"confirm-password\":\"123456\",\n    \"google\":0,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"qwerty\",\n    \"phone\":\"9877384839\",\n    \"first_name\":\"ranjeet\",\n    \"last_name\":\"Singh\",\n    \"latitude\":35,\n    \"longitude\":70\n}"
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/register/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"register",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register fail ",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\":\"rahulsps\",\n    \"email\":\"rahulbhola.softprodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123456\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0\n}"
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/register/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 09:59:25 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Passwords did not match!\"\n    }\n}"
+						},
+						{
+							"name": "register pass google",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"first_name\":\"Rahul\",\n\t\"last_name\":\"Bhola\",\n    \"email\":\"rahul.bhola.soft.prodigy@gmail.com\",\n    \"password\":\"\",\n    \"confirm-password\":\"\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":1,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"sometoken\"\n}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/register/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 09 Jan 2019 07:17:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "286"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"812823ddb8dae1ba1177ae5aa186f3c1de1d9b9f\",\n        \"id\": 10,\n        \"username\": \"rahul.bhola.soft.prodigy\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahul.bhola.soft.prodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"timezone\": \"Asia/Kolkata\"\n    }\n}"
+						},
+						{
+							"name": "register pass email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\":\"rahulsps\",\n    \"email\":\"rahulbhola.softprodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"qwerty\"\n}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/register/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 09 Jan 2019 07:14:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "257"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"token\": \"66bee4cb1f520f916a77d8f626fecb3de626870b\",\n        \"id\": 7,\n        \"username\": \"rahulsps\",\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"email\": \"rahulbhola.softprodigy@gmail.com\",\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"timezone\": \"Asia/Kolkata\"\n    }\n}"
+						},
+						{
+							"name": "register fail dup google",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"first_name\":\"Rahul\",\n\t\"last_name\":\"Bhola\",\n    \"email\":\"rahul.bhola.soft.prodigy@gmail.com\",\n    \"password\":\"\",\n    \"confirm-password\":\"\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":1,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"sometoken\"\n}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/register/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 09 Jan 2019 07:52:02 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 500,\n    \"data\": {\n        \"message\": \"Account already exists!\"\n    }\n}"
+						},
+						{
+							"name": "register fail dup username",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\":\"rahulsps1\",\n    \"email\":\"rahulbhola.soft.p.rodigy@gmail.com\",\n    \"password\":\"rahul123\",\n    \"confirm-password\":\"rahul123\",\n    \"latitude\":\"37.456\",\n    \"longitude\":\"72.123\",\n    \"google\":0,\n    \"timezone\":\"Asia/Kolkata\",\n    \"device_token\":\"qwerty\"\n}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/register/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 09 Jan 2019 07:53:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 500,\n    \"data\": {\n        \"message\": \"Username already exists!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "f1ea56ea6e0b347a2ccf1f9c9649fa798d484bab",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/profile/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get profile fail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Token",
+										"value": "93fd3aa21abef2a6a712e2a8487603efd67188d6",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/profile/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"profile",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 10:13:06 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, PUT, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 403,\n    \"data\": {\n        \"message\": \"Not Logged In!\"\n    }\n}"
+						},
+						{
+							"name": "get profile pass",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Token",
+										"value": "93fd3aa21abef2a6a712e2a8487603efd67188d6",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/profile/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"profile",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 28 Dec 2018 06:03:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET, PUT"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "346"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"avatar\": null,\n        \"first_name\": \"fname\",\n        \"last_name\": \"lname\",\n        \"email\": \"user1@gmail.com\",\n        \"username\": \"user1\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Token",
+								"value": "b4ba3eaadaab26115a91cba623cab161a41f37b1",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"first_name\": \"Rahul\",\n        \"last_name\": \"Bhola\",\n        \"email\": \"rahulbhola.softprodigy@gmail.com\",\n        \"username\": \"rahulsps\"\n    }",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/profile/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update profile pass",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "3896ae1c7cb83519ed70f6e55a2a7d990e42c9dc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"first_name\": \"fname\",\n        \"last_name\": \"lname\",\n        \"email\": \"user1@gmail.com\",\n        \"username\": \"user1\",\n        \"avatar\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANUAAADtCAMAAAAft8BxAAABcVBMVEX///8hjK3oKCgAAAAAwUCysrL/4ADyKirsKSnuKSkikbPzKioij7Ejk7X/6QAAx0K5ubn/5QD/6gCzHx/jJyefGxvFIiIegZ8LLzqtra3EIiLdJibh4eGdnZ0cd5OmHR3MzMyGFxcPQVAZaIGWGhr19fXNIyO7ICAUVWkAsjtCCwtyFBSQkJA+Pj7AwMBlEREApDYAvzR9fX0bcYxxcXFiYmJWDw+ioqKBFhbZ2dkXYHZRUVFHR0cxMTEJJi8EEBQGGR8iBgYmJiYwCAgMNUE7CgpdEBCtmAAAvCOGhoYfBQUAjS8AXh8UBARpaWmOfQAAdSfOtQAAOxRTSQBjVwDFrQCRfwB1ZwCznQBJQADozAAAFQcAlzIAfyouxVMARxgTEQAALg9bznQyLAAAYiDJ7M/r+O2Z3qaF2JUjxE3fxAAtKAAAHQobGxs7vFkAQxYAWQCy5bsYFQAAqR6L2poAJgzF68s9NQBuYQAvKgAkHwCkbn1SAAAgAElEQVR4nN1diV8a174PHHVmWEQBRQRlERBBQVFRUXHXmESNMatNmiZd0tqkfb2vve3tX/9+v7PMnFlQwEF73+/z3o1FGc73/PblHB48+EdSmmzc9xJ6QBWyfN9L6AFVyNJ9L6EHVCGn972EHlCFzN33EnpAaUIcX1+743W4S2uE5O2vpknl7pfiJhGStr0224KB/z20ToasLwGo/vtYiouUtCEAody8l6W4Scmk5YUlR1X7b6eNuf8foCqzp+vrSxPcmv+/wJSvEZ0mevMRa0MrEyv96TvcrllE8/zl66O/KC7XvW9+Yk7ftLmVuwG29oWQf70eHhweHh4cvDp6RVxwv/F1BDBL9ycPpodsHMeHhlZqmwjsLmCh8J0NDw8wGh4OH92aW3GdM1sT+X74x+BPHuSiB1FnslKpyItGUC/CAxKFn3ccVuRngQnr3Okl4efN2kp/fOLUUVOXXE8RkkK6J/ju5eE/rgYHzERIvKOnpgVraulkGuRtVmdNGhUqbfnzOJm9JQwrLa8vLy+vGxs4QcjlsAXU4Bn50tFD4XmnsxPHG3zHJL2hu2h7WNwh7nSDkkIqdskLK6iBgUtCrMHG9U8TXg7tgkl6v5D1vAPnl3trMeAj7aAGwhcdiqBO6CMkC7qCBi9tZ1aerHe74nYoTZ5blQoN4RGpdfc8RCUVrJigb9g5v9QjGWQUB6PugOq8272cNfkjnmTH7ZzvbVlrhbx0QAWK1WWFkFoHnTMT7DFpcmz9u3xPc9IVR16Bbe/WU87K5mKWCXLaQZ57imqIXDjoFaDqWpvlvBpiDPyP2l2jAolxAnXJxX5iqGMLnJcDF5THjXWHskiytyVIQl7amTV4RFbEqnaXVipryWR3/iVJo9kNe1i529sCVs0htgi/ILvst/FlEQutdPn8ZNoppVrvTADXap1uKiHfDJhhhV/KyUKysjJbO13v0is7U7yzXTomHcY6oAeQXZ1LMfvwwEXHz+iU1jphVfIL6SYpAyn76zLMMqzh8GtyB32ffLrtP4XwmySqnXPrQRp2483R+cBgOHz+rRuZsIsEGlhKqP4Rh4TmRqroVqFrs9ATwlBlxK96vVphj3STlaVXasvr6z0qMF1H+dl0ulJxVJshQnYSmhdJVXLmzO0fSWvx4+W5ueXj43UmIk58ANtX1VQvJy2x12mOfqeUPt4kVnJABVqR8jNEakJVgV1gNDb+kezKxxlzHhEyXRgfHS0kEtFoomRHlQfkBYWzqUD2UBL95bYU/66Bx1m1s5RLjBIyqqmUvF6lbkMFdmIvyqXPn8I3jQNEJUNu1K6hzbtuvG0ionFV0VT/DonoKgOoLGYK8s06VylVKTMhTQEsLYr/cZ12bdhc01Cv/e86qfrZYrUySWk6qpJFriCkWvVLRiLraewTksOXlMKj6+KEXWJLUWd7HSotkTKHomVIzkB1YEZ1jF6K/2oaeDMV9ASCWUIy+KIKG0J2W0jhqUP3Y8X18qOFjsmqQJXTAcLSzTYAjN+0wqVvlZBmzOcB8u0LBvojRCQVFkoSey/4QaXXHe5ZkjFQ1bmF86p+WVWo8dO49B0QUgx6GPkEt9AmOhdW+p3CvXwXwVZHtEJGDFQEVqiqmqIkChIqyfghT7YmfR6PBIvqlleN7jlXVhw79Lvd1gHbpH6uTKrqzyFHooVIpkQNnEAF4nLI7AnVn2wg4DEoWASFU9gDSuRLu36p10MWFRAhv6JGC9O5A3NswfXqWAgZs32LPo+JEFaKCa5Wbzs5SfY4YUyTkxNrrFStVsvccuXBSUfYojH32PcEPBYKTplgpdv72M3ezo6scSQH1cxIZHp8OgLiF1UUhcWBaT1EV711as/t5DNgKW1zK24vs7pJSbKXSY0nFEXTaLikAEcSqjdKUJ9rBIw9VSll3JFRDNaiwa1SmwqT7y2vkqTsN3IL4An42IKqgg08RTZO+3Un5cgonVvcRwOsuXQv19se5SXXSwGMUlSjTMG8mjATYx5fK1CgWw3DpJS6ypBdR7VqRjWOqLxeTE0Yo6iZaLRkFFIAZFCYf7T+y/c+x6jHFgYqCOFHTyDQYKsEM8EjJIbASbkoZ3dY8oXv7W2Lrx1UORmV6h9HZQLuHHKzBnpWlIQvMFV0EEVgJsSEukM/vIta3/WoMig5ECcBKUqkBBpVLulxEJiJ7ZgMw0fIpJVbaC0C6I5Jmbu23H1zC/Sq4FcKqZFcZvVQd8SjijATWZ8JRLBJtq3MilF2IjZ0CpTDkXuGRcoZUrKEF1WVLg7y+K1Fi5nApMoig75tYBX+C+gOeFkNYd3nmLcEpr46Mg6rIREmfWoVYlkLKPS4hMRk9vlA9BbpCwHPmF6EQm/eKpG8I1R7uZHIaMKvaJhpnLDtVgqUgYsm+QsAOyabhFiUKuuTEB5yRoPjvr/p000y7p1WNLoUfwYQelXhpJpoAEycmgRQKGhjOguReWOGRAYndaVUxk96MALYJu2CPealI4y56zQ/VNU6pry4xqa+5AByAoQvAK9mqWEM+PClMZmdAQ+wMqeoQoTvqfExJ/J6LbEjwjkNpQ9T3kBsCxbNlCYIojdGA1yqXMVYLDZZ3JLyfUkKS1GNm5teDaLeiKqkCHe7l9AXwwP0gGebbE15gr5YA3jQ4HyjvonRWMzmlFFOefEGt+dezvFwXqHjXGWCgzVMI+4LZAWArBHgAsjsWLOZbcSc4sOAZx8dMn2Yt0Q278FmrJOq4tWiJbG9avSASZ+x9dntre39hjloB5Xy+RxjQsrMhs543KMe1zRboEKDzlUBS2Bj5vQw4AsGg75WAJzJBwrJ/R5a0zs/CrIOKQTYqgyL0DEmcApfO6YASi5LpFFje1soc0L1SFdu6rCsMVK3hGUaJoXI/ztuSmL/eU9Eb1WyZbdp3ZIvts0LVFgCvVuHfKo3RdFe7bc0AF1QAEu7q4pw8HfYtZ/VCynYsLF61NsSSmGJhmAYFt6Z51oXUZuqrdoLs92Tjz+J2kLaeUDXfjdBfFJXKa2wA0mva9IXKzZj7CcjO0Gb0eNWCKV+vTCEPiV7A6McIQcc3xQAwWuIv8e4kCmX9y6qajVRxKMR+vW1Mdj+RQdDEmhkW6Ey6gCoXHWW6fS8nmH0BTAENQx6C45BGr8Vs70adGYxskcPhVm4u0MrGgpKYQ/jJyw3F6wROqYexRaoYKH7NnYCqm0HHvvGyLZcB8AUmn0aJv69y7niev/QEqHDh7ZUFWJnFrzogApAwP9tGaqICQ13yDiD1yPlWhJ2AjVYCifo2m31PsoVrGKOORScJEmTXs6iMskP9hHuGFV/qTfKhSrFeu9a4sRU8POBd3EQNLr9xaxViSB5bE6Z0xaKYBKrHZiMkKlggIOiWVqGB/GlHnguVClW31JGzZ4XNnkLFjNll8Fgk1Bb1owFhQb6PMASH/LQ3APCag2yO4h1gO0pcMhB3yII4BZoZpntpb/qeljYb1SBwE7IeRPs/Rhdu7VVhQMjAJWGq9lFWKcvGJgssr8LbNPaTED/00WxUwEPZdD2WBP/AXGcNKr3VacxjFtQTa/4Ydoh21/IyzG1QtGBZD4gYYo1edJFTTbZao5t05IF+5sxIrBCnDTVlArzvhiWaygVA9xmPFLEZ7tYp1kX4aaXj1g1ggEkn6coRI+WkLKTNIdHrixmDaGkf0ZpW8/DfFNbjCf7Y1soczKjfb7YYqMxNcnjQpymYcqF6albqWR+S/QtMDfI+nCbt4uLk5MNFBaxx4HYGC0fZYvFYhbFJyslXb7AYjGbLS4GZWYuFpmU7RdjQasFpZsmCblenXOrHZQ2iujeA0w7qKHSS0jGeoKLTf31raKlkBRALprXTvnq8bVR3WDNVupUojtk/fj2YriCpVnWOIMnUtcb8MHO74+N7WfNSwddagBLssWpmM+19IQSyneJF4hxbuW2/KqJXhs4eMPOBbj+2D7++tpY9xRASzqqUYHZAVi3u6NpQ6+5oEi7lyB2Dgtd8jQzw+OlW3ELD5/w0R1t1B4P3C0sjMv4yA3G1l0XdzGeqPP6xLSlrXb35JscIzvjomlx0m0UP0S4KLOA4p5BoTGa0oeJ0Bx3pVx4CifCQEE6utViHulOCaPFvQQfO8Que6dxYT+exk/pxdntuwflZEmNTJJ3WzvzXHgKZ0e8vQygerBE/XeOr/qaU46wttigP4+fOku6IPI74D1S5bADUAFn7Qs07GmiTg3HtwTJvtNbAp4tYwQPp5Q7EEK8LiPFJ3Eg77U9utUSIRC1J/RIEH+3eEug6NhPQVlz3iCM4fmsmn+vo7w/LVBhCd8GytfIOq8dV591WkvMnujrD8uaW/6cMLFswV98Bw3icCCxEwGkU6Ya8hjHDGzrbFndDDgXWqiSt6gdYn3Aziw6CdTKmfgwjB5RNEiLOsxLIKwoaZjM2x9N1+jMLERVtKcVniY5sfft6QI9NM6ftLwHPNNehLTsIAXpm3LjnZt2UK1qxHG/AtsOlSP2aTQ7b1padNgMWE3QPNiyeOpXSzjJuS3XqOgoWkFJPEIhdMhT8GPYgbbOp57Y3Tj2gNY3VlLL9mElD02DStoIW770KkYEfhVb45AsB3lED1F/0NPYosMjUSJln5hOblP/T0vspDjJygCMMJmkIw4PknNdeOEH1LrbK0cgTTsQXkaIdVrOg+WjkqZq3jJLhHH1sISYaG8oKZZnNhYncZZkimbCZYxXVZzkJw1PENcda2zrkRqvJ2yNZTHDptSYwtoBLVAPdXU8Mu2AKjhJHmH2poF4bEvaEPDFiqIOoBTqyK8GLH6yAZjqvNWqKRFjlhCpNBJVePiTo6K7v0+rBCSj8gFsZXqPONDSbQqDK1ZYyA5ek6YTpU0s3KFMeHD1ImnBidW6voL6uF+fEVcVdXxktVov1aurI+NexRhz1dRUlc0b7pUjmvG66i+kcplVpHK5TiEu3/aGtfwyVq98QhGQHXWxjfyY4nYWhILucE6VFqMUcgislCso0tw7ZYumIGma+XV4i9+bKCQ0xfILNgZLSfEfuFOLQSksLgKk2CTVA3H2jQUshkDVUxImtnq2eMvaryf1hr9W6m5dvzwhyfNq1DzwrRRALsqZ1KiqdLT6bkmpund+eoX5htK4plk/hktHV5BYe0WXL3Y8l8snPYEiXpTeUnbzVHg+jZfu+Vsu0AaVrg8XaNsHg3IJv99biGTK1Wo5k0tFxkdHRyO56mEd6bBaXs3kRlKR6dFCwkCVcXf+AiKNiCNH9N1UBRJvpJqano6kMmVYYKYVLNo/bJPE6Vw8b+hub44Qs0oxafFHC9ORyHhUUdQE/DSSWz3cMa8o4YDIy04BcWo2pT8/fwGE91QSst/I7vNf6WdDR1xHpRpwFCUxWhhNrepeyTrbTrDgnkWDn3JmloYTXRgqTPogqjsLDw6HgQjB+zfxBs4jQIuhRtAztY/TRfxdKZfn0AiJ0ucmxscjmboNA9Kb53+9Ont5dH6F87UYswU9+5YjTQYqCCaCAVrmhUzziN3jE/5Gv1UqfCY64tgGEw9RIy6j2qSypI0LCLRt9vLl6/NLXMQFORsODwLhTp/rOUdgis/n2lGl9D6+r0nObaiGj4zf7+sSCKjc/bqADTxgxbUh24j5gr4Y+SY8zC7fCb8R2z1Ab8ITOWWgQYgzKjWlT4cHt8klvxXrWwPVa33gHZIpIcbw+e6iWiajKtWGhoelPIFFQCUu6Xoj34l3pddRrkUl/iio32Y2+B8iLgAbfqFvjQ/PdvF3jbuMagktO2qDyCLxqJszqgGdDYGiMDI2VBF51YNOqPS03zCk6qjLqI7xkDqmhHrusWjcmjl4Id/0N6jXLrAj7GwtAFXRQBXWUYl9Ar0q8vmEScP/qwWXUdELBUDH9XIWftqlwPGXCdWfAjqico5IQAL5qmVe/fwf/Akte/iVmD8Di2PcX+A2qgk0r7DDxmhPTEJ1ZkJ1IWo1viw5aalXDQPVAHNT4b8vwJAOvDj7kzz/F+GlW9gZPUBREy6PdsZxx0yoAoRcCXl5SY7YwvA/ws/FUSVAddAOqm9fvoaQ4vUL8vOrV2+E7+C/B8Oux2qAyt2jj/24PrCsW8Zxoy1yOcgigfBr8uL86OjoxdXlwOXVS2NFWUN6zASyPGWgMtF/np+9PPvLeMaWOCEI5DaqCtposKwSqjHy6uXREazg4m9rmFHU97lVbDGiowriG7755uc/L87Im8tL6ssHr4zBKNk5RF1GlaaoCjKqrBWLQdxqQ9iQuxkV8BxiQAAT/lnYwOEr3QlPyuGJ26jWyB5FJelVkfx98ers6PWL8/Mz8vwK4tPBgasXR2dnF6LYDmFDytlfyai2dS/8RvwEqLjPAxMos9tlVEmckcLhBHks8CjMY+wjcsasMzVlRyJuADZMt0SlW4umjuq5sKoSqqLMbtV1VLhlUan9Ag5LmHOwgdKNz+BBufj42PF8Z1S6vxoTthTcng0VyLmUrqoujz6yaxJUuW0QI68GdRzSfbuAkfMqwPMXR1R6xDQm7it34hUYnPHeoXpAUze/jMqnMwiitj8NVOCTuV7FWgW3aNnHjEyDB/yDrxxQNWV2q25/yRydPVROpLPAPh0KJB9/S6guRIzXGhX684COiksySOCA/sCmrpoSKsXts9/UnyoHxOhBg/ESweilEb/T6JZZAgiAd1qhgkxtSndqXJJBAgWqFyJpNKum0uKyra5pE2MfpS71BUE4Lg1Uhlqdi4lpsJJ7rVAVrkM1jHf16gZnXEbl8pVM6yhMWlnqnYKa89QcUV2J8Db8l1gRJI0tEnyMfcSwuITqAlGBa7h6TrCsgY8Imgo6rqNaoqgy0klzSL2PaLFiMAzsOWLxwWD4yggtiq2CW7q+RiwQRMLH0Lg4/CcZCA+cn9EArIhtrslFyKZXe4jqGI00po16TxCE4+/nzy/efPuvv7+FH3+G2Pvi+XOMufn0M/iaVhKIdw3Sos42Hb998/J8AHIQQnjIbirEPVJ6h2qFlmPQdNE2pi/I5mydaLvYwLZnEOdYWqHSyq3e/ag8UvAnVgWwQznmUty+UWEItRaVPNtYXFxk/U9ykMsA5XIjqVQEKTWSE6vdalIutCy0JyIpJHzDeGE6Vz14tIdvXS34sRuhakpidHp6NKGYui2K24d71mjkopXkbd3L+M0tDaxSeyPlPfEHkWs6DvzvNd5rUBTFP1Ial0CY+yECVdpVVHkWZWLxjFIpM+11bnnAPmuJAt4W6+2wBaTd1AZTXD59QG/AYZ9cmJ6md5xduwLVYadvT4rr1xrrNfzeLLhdVC4fIN5o6VFvJknzJOoKlcsXepw6F8HUG1qKaAiiI2XsG0amgSKcsImodNpOVlw/Mldz8j04glAtHWRsv+L9XS0xmlq13HIpUalFUnkNKpcvRpx1yADVBG9llS0mXMvtlEoHwsJvU2oCjTFqNrfZbyyFNVUTcmmbu+gRqgl7to5OmazTLwIbMQshHmVnNFZcZOFe0CcT/Dee4DZJtRIFz1yg4uxfPVmNeG0C6j6quJwSMH3SxBGAJJFKkRRVmTSzxSk6L9ZykNhnapmo0SrbhxFF9bMIpR6x4HIfVb+pi68kctX6gR6WbYqb5cSvD0kjeNMxGDwkIddlgZbwSxPreAXELv2mjp1R82NdtxYVWcpEcCq+ETdtqbtAeuk0uG2hmJToauJ4H5tLTEM0U8FvgjO1y91HlZYKc/QQ1NLEknFhzYa5ngmJxuLNqIJSAUnLiS4OztKLyLx/06TN7vurNaPjgqdBLc30ilkElb12UPmaRhUUUHGVWZED84rJTLofWyT1pBQvS9UFIc++l2gNbzEydFvZcT7tfS0q3pvalS1C2tSDdT8OTBpXzZeNb5jGrxRCvu3SDA+MMf/4EzJ5IyisUukSiFUn9si4nO8OmcZrFNdvacrjfVlCvPiOVbhTmtPvSeQpPaBqNcgvo9qSvIW/7pQ7nZrMkOL+3QnijDUueY0DJeTo6ur1N6RWi1fSQ/iNqcz8t4fKVOzTuC+il1Sv869CXTMbQdezRl7npM8u8WeneUt34BvdaHExbRuV8FcqHrOfe2DcvE1FbQ0nw713gwoUm1nAJfJ6mJdahRKLK/jak0BdvPyj4Cvm0PQh+8/Pj/7E9S/pJxANVG7fO2WULNUTtmWiiz98qZstrljtoQoIA4dX2pEN3Bn8mlpkf/icbOAJWFts4fZVK1sGKoxuTtFdXtG2XPhCWPp8R7zy8HEMnLlZZzK8K+rBl3i+gOANcWZUbt9xsWskw6qX3sqwSf46enF+/vpPXTD6hV49ag8Vi9khvhKuQhTsh6/Q0CeBWwe9RTUnFWLxrMMDeukKIzGyotvAvXZQxXjFWjICYogjfMbcV3qTHPSwIv3gwbqESuNA8it4Pd2mcI3LQlGUg3a8cIwZIBRo8SGEnGHPKPxC36madMF4D1AtG6jw6vK07Q/wmA2P68H4t8Ur6gIhAtNjlRohr8ODA2fStW27RszUA1SnRuEC1dv2ezwDVBXfy1NvIw4MTLJqnBoxUKGBeIXTxEZsPmskdj1AtSShKjuMSdWkGW3IGttCRW0Ldlr0p6xQPd2VDHhcShbcR3VsoAJWOGQENVOucnMmElhkqFCvhL+bWB9a4YH5Gg/5jG9wAlSdfb96h6hKjpGLkQsBM2/OhQEVr3LjkPLEWj6fxBQgz4x3kgZNafymY70MoJy43BdG+ZZ5pUcu0te+bumtRW21HVRTgrlaQaoZCin4Aq6Z1i6MCLgHqCYkvVrVebUhVRIkXmWI85FtD73pxooKgttpWmGqJg51YZxlhdCUVBiEkMVtVCuGhdXH5WmCJf6g39ArMJItUPkCk1NT7GhmoCGXQjScEdCM8gU8bjqKp8y8BoFzdxtVnEiP3yFfZldqTGR4SykvKQAsruiMil3NRC++NKES4BJ6ADthP47RA1T9UlZK41uU+ZGUYNaaHIlqqRa3FW8RcoGTmjhwHChaS75eaog4s3btA2sQsriNqiLXZ9VomexlCn56HQM5nZ2FOLRqRFTSvLpJ/LIQ54WHw5d03NNXdBgfxPoFtT81cuIE2W1UaXOhXaPtRvCgVd4kkLNWWJsTKkgTj3BiBFKXVqi8kBRvAOc3iLkCzlDVe4DK/jGoQBF/ZPWwnPKavg5m3PF6CkB1EcaJnr/RSQMqp6NqWonsYskqYu+K9QSVwxrAxo/iiSzLmUcIWMdaSODzy/ALNqZknmg0PRNo3KHVB6jczq/WnI6IQcCXcFiZWpC+0UFm1iKYiz//xUazAJXzAKuSqJJHTkMNPcgak04Dz2CVnNYFNtLpnlR0wdS007sJAq1QoVwfKvaXsV/mdt0i6TSc7m8x1JNwvL6DSqGn0WSWBHg12gLVKnE+5+k+qrzTQQK1Bapoi8tiKb+M6w5boSo7j4z7T1yvnOXlCTI+RQKS5jyuqV6DSudaS1RgFRx/0yJXuBXJbKnXMwmF2jrnYTnF8Y4bC6qxlqj2HG0Q2qYeoBLtCYW27jP0PEyJf/eneRX+9lC1mEyAPWE/qObj8JCMun7zMhFbi7boyR9YqtMiFJWmJMZHreu6sRxjnurG4Y1ElIXofj6CpyRyhzLTAJXL01lGsY8WGkKht4TsASowIUoKT3SbpKlNVPJ7VAyUd3JeNjfvF119ecjVPVR53eqIb7ZDd/I+1Bfqe0bq0/i1f2yUxDTnpDy6uRxjQSU66JmoQlHRe/Q/mye/6+auXOdmXu/d6FWtL8JhQZ7xJNTX1xf6QOqkjjdXP515YkHVRgs1uG1F9Wz+7dOv8MqkA6Li7ZKweUS28WAD4w+WjbONXzo96j3LM/ekEaRsCocFlu9XRNXXh0l5hpD5UJ/loAugurHIBKjk2AIk4FkI6B3lGOruh7f4XClWhEgmLn0n9FDHhbQV/o6k8ZA53YqD1lBUoccg94Q8DoW+IyVzp6lzVIiDPrTvCaCCNOtXgPjYLIGPSHzNuF6PdIyqwnmUNxrMG7rDgojmLYOF2/pHCJlmDunaRGWK2f0H5B17ah9lF/70zDTqhN3utD6OsdT5ne36lhjF4WXhRTCk+MA+/yl8xrtQ6InVGcOu3lg6C26Z4yLBLHjsdwQloC80T0whtcZR0eIa3hva6VQT9mdpCXVTHxhZNsot4OTZtsLHkhk08paMUiFtoCKWuoWSI38YqEJUb81pPiFDaV7Wgn9/7XhOAW+KoaHkhs7mJUPGcVvnQ1wE+2YsTen2UVlyG3+ZfJ4JUcEjT0P0H9NuQcxcGSLfvYcl9cMCvuswfloDY/H2PRVgQyVr+k2flFlUtRDVvH3qsV1Uq5Z8A68QBdvTRyUA/KFltwBV+pi8Y2r3DkC3iyqZXlmigy5ggT4ALOxRLNeAjofwTulClCXzCpbOnsyEQp/xb0/81jhQbQ9V1ZpF4Y1cH+Zn0AShcOfMuwWo+hEOWEbyXQh2tLZ2U258XFve4KXu908fP55h7qgVsVtvnj2l/9QLo4VCIqr59auUonhFmumWdUdUEJhIRG/9wk4CSMkTMO8n036Nn0+gU7x+P/20t6HQ/FNQ6xBbye76ae14dmJiJR6PTwDNzh4fHy8h1Wrojhiid/PoC6nSwJ6Rp/PXYLPSyUH9sLyay6XwG+PxWjx6rV6MhYQxRpPifzywN9HC6LSgSCq3WpeP85TpCZSRXG61fFg/2OG/ogEAri/0/sb1HD+o/M+Tp4/nGR5O4BBxYx6/nZ/BB4U43JmZ+fm3b98+fvcYwhvy1bMPnzsAfkv6/Fha34xO8/Pz+P86zTymfw1699CEiOMKUTjWlwVGZOa8Ge3jd0+fvAeNBG08XV7fmNvc3GW0CTRHCV76Yqzzq88fnr1/8t3Tp+9g92A9fJlv3z158uS778DgfXj89D3+wbvHTz8/dVqLE4VmQr/E8aLBh+39vfm98+aP4QhBKfW5n48AAAMPSURBVJaHbqD+YzAMIQvZnoSvyT+2vbSFr5m56BxUK/qAoPpvILSpT9tfZYe08As3gh8XXHoiqNnpjaD6hyBWmXHpE2208FGY9k8uoQITsnQzqP6hTRoX94QeftId1vfuoAIDMNsGqH7qT135RBstfC/5YVdQfUU2422BmhURutu08PUPcnTxowuwPrclfSiA66xM4Do9/N0cM33fhW230B9krj1QKIC9sBULfd8/sNAvt3wkRNFf2sQEdv19D1j18Ed7gHtLZmFgFm8X1RaZdwmJQRaNEnQrl4URxcQ9smph4TfnbCR/C2ZhDWOiXaUacl2rFpyEj9O/u4aFdbz2QS1B1ucupo+OwndL6w6c+tKuTvX3x931VTdg6la1QjMfyFzbmPqH5shj91gFmGzW3EZfdwyLVpHbiGd1UMfkmWugbuYTo186hBWa/6MDlWLy55apABvRFqZOhZCWxdfbh0Tlz52wduFh36eb0ej0e9uWkLUw2ovRBagaL2ffGlMb6mSify+0x67Q26860iikFTfkb+HhT586H5PJf2yDXaH5Z4TMrXQGaujLreVvYWGhbW2y0G83sSs0A2HfbkfC10/z+l9vBQohdSh5Jvrx4TW4Qn3YtzjuENNtc0WwD7eChPTDx1a4QrRxtTTUMah+wvt5XSBaePj1py4Frx1ctLFJTvs7xwQJcFehOiBa+PE396bofvjRql+h0NvPhCx3gam/f6IL+UNEH39zhUky/faLxLBQ32OIJJbbK7jYWPWlM/kDy/Dwpx/dR8Toh08/MWChGeyvr3dozHVQtfYLMAuURZ9uaxpuBAYcW3gLmOY6CfnM1Jb8IZ6HPwGgHrHISt//Ttory7Zg1dL1+ccCxfP1x0//viM8gjZqa8l0JY7UOahT5/xjgaFZ+Prj77/dFX+cKZ9cS1f6453Ag0hdxH8Lgh4+fNj3y8cfP90zGgvlEV26MhQX1AoS/g6k93+BJX1f//Lx44+/f/oNoPyTsDhRHgAm1wBiulIZkkIO+LlSSafX1pLJ05rLd1O0Q/8H1SmsvZXQE5cAAAAASUVORK5CYII=\"\n    }"
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/profile/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"profile",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 10:15:12 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, PUT, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "405"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"avatar\": \"https://s3.amazonaws.com/dev-hstandv2-api/avatars/user_32.png\",\n        \"first_name\": \"fname\",\n        \"last_name\": \"lname\",\n        \"email\": \"user1@gmail.com\",\n        \"username\": \"user1\"\n    }\n}"
+						},
+						{
+							"name": "update profile fail",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Token",
+										"value": "3896ae1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"latitude\": \"37.456\",\n        \"longitude\": \"72.123\",\n        \"my_description\": \"my desc\",\n        \"twitter_handle\": \"i am twitter\",\n        \"facebook_handle\": \"i am fb\",\n        \"instagram_handle\": \"i am insta\",\n        \"paypal_email\": \"someemail@gmail.com\",\n        \"first_name\": \"fname\",\n        \"last_name\": \"lname\",\n        \"email\": \"user1@gmail.com\",\n        \"username\": \"user1\",\n        \"avatar\":\"data:image/png;base64,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\"\n    }"
+								},
+								"url": {
+									"raw": "http://192.168.0.103:8000/api/profile/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"103"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"profile",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 01 Jan 2019 10:16:23 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.7"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, PUT, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 403,\n    \"data\": {\n        \"message\": \"Not Logged In!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "avatar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "b4ba3eaadaab26115a91cba623cab161a41f37b1",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/avatar/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"avatar",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get avatar pass",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Token",
+										"value": "47469bc26bb3a18b666ba32dec2290996e91e799",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/avatar/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"avatar",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jan 2019 12:46:23 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"url\": \"https://s3.amazonaws.com/dev-hstandv2-api/avatars/logo2-274x52.png\"\n    }\n}"
+						},
+						{
+							"name": "get avatar fail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Token",
+										"value": "47469bc26bb3a18b666ba32dec2290996e91e799",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/avatar/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"avatar",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jan 2019 12:49:56 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"data\": {\n        \"message\": \"avatar missing!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "avatar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "0c7fc4dfaffafe007cd47c2edcae258d2f2eefd3",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"value": "",
+									"type": "file"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/avatar/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"avatar",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "post avatar pass",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "47469bc26bb3a18b666ba32dec2290996e91e799",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/avatar/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"avatar",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jan 2019 12:45:20 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"url\": \"https://s3.amazonaws.com/dev-hstandv2-api/avatars/logo2-274x52.png\"\n    }\n}"
+						},
+						{
+							"name": "post avatar fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "47469bc26bb3a18b666ba32dec2290996e91e799",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "multipart/form-data",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/avatar/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"avatar",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 02 Jan 2019 12:47:11 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 500,\n    \"data\": {\n        \"message\": \"Something went wrong!\",\n        \"trace\": \"'file'\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "change-password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Token",
+								"value": "b4ba3eaadaab26115a91cba623cab161a41f37b1",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"opwd\":\"rahul123\",\"npwd\":\"rahul\",\"cnpwd\":\"rahul\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/change-password/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"change-password",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "change-password pass",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Token",
+										"value": "0c7fc4dfaffafe007cd47c2edcae258d2f2eefd3",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"opwd\":\"admin\",\"npwd\":\"admin\",\"cnpwd\":\"admin\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/change-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"change-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:51:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "PUT, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Password Updated!\"\n    }\n}"
+						},
+						{
+							"name": "change-password fail 2",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Token",
+										"value": "0c7fc4dfaffafe007cd47c2edcae258d2f2eefd3",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"opwd\":\"admin\",\"npwd\":\"admin\",\"cnpwd\":\"admin465\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/change-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"change-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:51:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "PUT, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"New password(s) didn't match!\"\n    }\n}"
+						},
+						{
+							"name": "change-password fail 1",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Token",
+										"value": "0c7fc4dfaffafe007cd47c2edcae258d2f2eefd3",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"opwd\":\"admin123\",\"npwd\":\"admin\",\"cnpwd\":\"admin\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/change-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"change-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:50:52 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "PUT, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Incorrect Old Password!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"rahulbhola.softprodigy@gmail.com\"}"
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/forgot-password/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"forgot-password",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "forgot-password fail 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"rahul.bhola.softprodigy@gmail.com\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/forgot-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"forgot-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:52:04 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Account not found!\"\n    }\n}"
+						},
+						{
+							"name": "forgot-password fail 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"rahul.bhola.soft.prodigy@gmail.com\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/forgot-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"forgot-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:52:39 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Login with Google!\"\n    }\n}"
+						},
+						{
+							"name": "forgot-password fail 3",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"emaixyzl\":\"rahul.bhola.soft.prodigy@gmail.com\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/forgot-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"forgot-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:53:03 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"Invalid request!\"\n    }\n}"
+						},
+						{
+							"name": "forgot-password pass",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"rahulbhola.soft.p.rodigy@gmail.com\"}"
+								},
+								"url": {
+									"raw": "http://192.168.0.124:8000/api/forgot-password/",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"124"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"forgot-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jan 2019 09:54:24 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.8"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Please check your email!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "forgot-password 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"npwd\":\"rahul\",\"cnpwd\":\"rahul\",\"token\":\"13fba58c346a256ef78bb3396509e8a2\"}"
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/forgot-password/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"forgot-password",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "forgot-password 2 pass",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"npwd\":\"rahul\",\"cnpwd\":\"rahul\",\"token\":\"13fba58c346a256ef78bb3396509e8a2\"}"
+								},
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/forgot-password/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"forgot-password",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 22 May 2020 12:52:21 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Password Updated!\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Classes",
+			"item": [
+				{
+					"name": "V2",
+					"item": [
+						{
+							"name": "v2 - teacher_claim_classes ",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "72cc403bc254af31d6efaa936a3481b7b586463c",
+										"type": "text"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"section\":\"187\"}"
+								},
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/v2/teacher_claim_class/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"teacher_claim_class",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "v2 - teacher_claim_classes  success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "token",
+												"value": "72cc403bc254af31d6efaa936a3481b7b586463c",
+												"type": "text"
+											},
+											{
+												"key": "Timezone",
+												"value": "Asia/Kolkata",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"section\":\"24-8-2020-tJHD\"}"
+										},
+										"url": {
+											"raw": "{{pillarz-api-host}}/api/v2/teacher_claim_class/",
+											"host": [
+												"{{pillarz-api-host}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"teacher_claim_class",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 26 Aug 2020 05:34:20 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.6.9"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Allow",
+											"value": "POST, OPTIONS"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "937"
+										},
+										{
+											"key": "Vary",
+											"value": "Cookie"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"class_info\": [\n            {\n                \"id\": 187,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-05\",\n                \"start_time\": \"06:55:00\",\n                \"end_time\": \"08:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id__first_name\": \"Ranjeet\",\n                \"teacher_id__last_name\": \"Chitkara\",\n                \"class_grade\": \"3rd\",\n                \"section\": \"24-8-2020-tJHD\"\n            },\n            {\n                \"id\": 188,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-06\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Tuesday\",\n                \"teacher_id__first_name\": \"Ranjeet\",\n                \"teacher_id__last_name\": \"Chitkara\",\n                \"class_grade\": \"3rd\",\n                \"section\": \"24-8-2020-tJHD\"\n            },\n            {\n                \"id\": 189,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-08\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Thursday\",\n                \"teacher_id__first_name\": \"Ranjeet\",\n                \"teacher_id__last_name\": \"Chitkara\",\n                \"class_grade\": \"3rd\",\n                \"section\": \"24-8-2020-tJHD\"\n            }\n        ],\n        \"message\": \"Successfully claimed the week\"\n    }\n}"
+								},
+								{
+									"name": "v2 - teacher_claim_classes  fail",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "token",
+												"value": "72cc403bc254af31d6efaa936a3481b7b586463c",
+												"type": "text"
+											},
+											{
+												"key": "Timezone",
+												"value": "Asia/Kolkata",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"section\":\"24-8-2020-tJHD\"}"
+										},
+										"url": {
+											"raw": "{{pillarz-api-host}}/api/v2/teacher_claim_class/",
+											"host": [
+												"{{pillarz-api-host}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"teacher_claim_class",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 26 Aug 2020 05:31:43 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.6.9"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Allow",
+											"value": "POST, OPTIONS"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "74"
+										},
+										{
+											"key": "Vary",
+											"value": "Cookie"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"class_info\": [],\n        \"message\": \"No classes Found\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "V2 - teacher_available_classes",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "72cc403bc254af31d6efaa936a3481b7b586463c",
+										"type": "text"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/v2/teacher_available_classes/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"teacher_available_classes",
+										""
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "V2 - teacher_available_classes  success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "token",
+												"value": "72cc403bc254af31d6efaa936a3481b7b586463c",
+												"type": "text"
+											},
+											{
+												"key": "Timezone",
+												"value": "Asia/Kolkata",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{pillarz-api-host}}/api/v2/teacher_available_classes/",
+											"host": [
+												"{{pillarz-api-host}}"
+											],
+											"path": [
+												"api",
+												"v2",
+												"teacher_available_classes",
+												""
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Wed, 26 Aug 2020 05:26:35 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "WSGIServer/0.2 CPython/3.6.9"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Allow",
+											"value": "GET, OPTIONS"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2374"
+										},
+										{
+											"key": "Vary",
+											"value": "Cookie"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"available_classes\": [\n            {\n                \"section\": \"24-8-2020-tJHD\",\n                \"one_week\": {\n                    \"id\": 187,\n                    \"course_id__course_name\": \"Science\",\n                    \"class_date\": \"2020-10-05\",\n                    \"start_time\": \"06:55:00\",\n                    \"end_time\": \"08:55:00\",\n                    \"day_of_week\": 1,\n                    \"day_of_week__day\": \"Monday\",\n                    \"teacher_id\": null,\n                    \"course_id__level__level\": \"Thrive\",\n                    \"class_grade\": \"3rd\",\n                    \"section\": \"24-8-2020-tJHD\",\n                    \"monday_date\": \"2020-10-05\"\n                },\n                \"class_date\": \"2020-10-05\"\n            },\n            {\n                \"section\": \"24-8-2020-z7oH\",\n                \"one_week\": {\n                    \"id\": 190,\n                    \"course_id__course_name\": \"Science\",\n                    \"class_date\": \"2020-10-12\",\n                    \"start_time\": \"06:55:00\",\n                    \"end_time\": \"08:55:00\",\n                    \"day_of_week\": 1,\n                    \"day_of_week__day\": \"Monday\",\n                    \"teacher_id\": null,\n                    \"course_id__level__level\": \"Thrive\",\n                    \"class_grade\": \"3rd\",\n                    \"section\": \"24-8-2020-z7oH\",\n                    \"monday_date\": \"2020-10-12\"\n                },\n                \"class_date\": \"2020-10-12\"\n            },\n            {\n                \"section\": \"24-8-2020-mkql\",\n                \"one_week\": {\n                    \"id\": 193,\n                    \"course_id__course_name\": \"Science\",\n                    \"class_date\": \"2020-10-19\",\n                    \"start_time\": \"06:55:00\",\n                    \"end_time\": \"08:55:00\",\n                    \"day_of_week\": 1,\n                    \"day_of_week__day\": \"Monday\",\n                    \"teacher_id\": null,\n                    \"course_id__level__level\": \"Thrive\",\n                    \"class_grade\": \"3rd\",\n                    \"section\": \"24-8-2020-mkql\",\n                    \"monday_date\": \"2020-10-19\"\n                },\n                \"class_date\": \"2020-10-19\"\n            },\n            {\n                \"section\": \"24-8-2020-u950\",\n                \"one_week\": {\n                    \"id\": 196,\n                    \"course_id__course_name\": \"Science\",\n                    \"class_date\": \"2020-10-26\",\n                    \"start_time\": \"06:55:00\",\n                    \"end_time\": \"08:55:00\",\n                    \"day_of_week\": 1,\n                    \"day_of_week__day\": \"Monday\",\n                    \"teacher_id\": null,\n                    \"course_id__level__level\": \"Thrive\",\n                    \"class_grade\": \"3rd\",\n                    \"section\": \"24-8-2020-u950\",\n                    \"monday_date\": \"2020-10-26\"\n                },\n                \"class_date\": \"2020-10-26\"\n            },\n            {\n                \"section\": \"24-8-2020-Imtu\",\n                \"one_week\": {\n                    \"id\": 199,\n                    \"course_id__course_name\": \"Science\",\n                    \"class_date\": \"2020-10-12\",\n                    \"start_time\": \"06:55:00\",\n                    \"end_time\": \"08:55:00\",\n                    \"day_of_week\": 1,\n                    \"day_of_week__day\": \"Monday\",\n                    \"teacher_id\": null,\n                    \"course_id__level__level\": \"Thrive\",\n                    \"class_grade\": \"3rd\",\n                    \"section\": \"24-8-2020-Imtu\",\n                    \"monday_date\": \"2020-10-12\"\n                },\n                \"class_date\": \"2020-10-12\"\n            },\n            {\n                \"section\": \"24-8-2020-H3RK\",\n                \"one_week\": {\n                    \"id\": 202,\n                    \"course_id__course_name\": \"Science\",\n                    \"class_date\": \"2020-11-02\",\n                    \"start_time\": \"06:55:00\",\n                    \"end_time\": \"08:55:00\",\n                    \"day_of_week\": 1,\n                    \"day_of_week__day\": \"Monday\",\n                    \"teacher_id\": null,\n                    \"course_id__level__level\": \"Thrive\",\n                    \"class_grade\": \"3rd\",\n                    \"section\": \"24-8-2020-H3RK\",\n                    \"monday_date\": \"2020-11-02\"\n                },\n                \"class_date\": \"2020-11-02\"\n            }\n        ],\n        \"message\": \"success\"\n    }\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "teacher claim class",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"section\":\"C \"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/teacher_claim_class/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"teacher_claim_class",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "teacher claim class success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"type": "text",
+										"value": "72cc403bc254af31d6efaa936a3481b7b586463c"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"class_id\":\"187\"}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/teacher_claim_class/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"teacher_claim_class",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 05:29:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "338"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"class_info\": {\n            \"id\": 187,\n            \"course_id__course_name\": \"Science\",\n            \"class_date\": \"2020-10-05\",\n            \"start_time\": \"06:55:00\",\n            \"end_time\": \"08:55:00\",\n            \"day_of_week__day\": \"Monday\",\n            \"teacher_id__first_name\": \"Ranjeet\",\n            \"teacher_id__last_name\": \"Chitkara\",\n            \"class_grade\": \"3rd\"\n        },\n        \"message\": \"Successfully claimed the class\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "teacher available classes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "b695b8aee44d2bcde2b55f3a0c8277f99f8280a5"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/teacher_available_classes/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"teacher_available_classes",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "teacher available classes success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"type": "text",
+										"value": "72cc403bc254af31d6efaa936a3481b7b586463c"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/teacher_available_classes/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"teacher_available_classes",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 05:24:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2449"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"available_classes\": [\n            {\n                \"id\": 187,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-05\",\n                \"start_time\": \"06:55:00\",\n                \"end_time\": \"08:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 188,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-06\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Tuesday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 189,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-08\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Thursday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 199,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-12\",\n                \"start_time\": \"06:55:00\",\n                \"end_time\": \"08:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 190,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-12\",\n                \"start_time\": \"06:55:00\",\n                \"end_time\": \"08:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 200,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-13\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Tuesday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 191,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-13\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Tuesday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 201,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-15\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Thursday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 192,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-15\",\n                \"start_time\": \"07:55:00\",\n                \"end_time\": \"09:55:00\",\n                \"day_of_week__day\": \"Thursday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"id\": 193,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-19\",\n                \"start_time\": \"06:55:00\",\n                \"end_time\": \"08:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": null,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_grade\": \"3rd\"\n            }\n        ],\n        \"message\": \"success\"\n    }\n}"
+						},
+						{
+							"name": "fail available classes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "dc95dc4d56b68203b9f45d534f6063d98bef0d72",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "192.168.0.95:8000/api/teacher_available_classes/",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"95"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"teacher_available_classes",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 03 Jun 2020 08:31:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"available_classes\": [],\n        \"message\": \"No class found\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "confirmed classes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "5fab38faabc085e324afd9e9a538b18c8e9e13f0",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "192.168.0.95:8000/api/confirmed_classes/",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"95"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"confirmed_classes",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "confirmed classes success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+										"type": "text"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "192.168.0.95:8000/api/confirmed_classes/",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"95"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"confirmed_classes",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 29 Jun 2020 07:34:26 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4129"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"confirmed_classes\": [\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-06\",\n                \"start_time\": \"06:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"08:55:00\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-06\",\n                \"start_time\": \"06:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"08:55:00\",\n                \"class_grade\": \"4th\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-06\",\n                \"start_time\": \"06:55:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"08:55:00\",\n                \"class_grade\": \"4th\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-07\",\n                \"start_time\": \"07:55:00\",\n                \"day_of_week__day\": \"Tuesday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"09:55:00\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-07\",\n                \"start_time\": \"07:55:00\",\n                \"day_of_week__day\": \"Tuesday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"09:55:00\",\n                \"class_grade\": \"4th\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-07\",\n                \"start_time\": \"07:55:00\",\n                \"day_of_week__day\": \"Tuesday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"09:55:00\",\n                \"class_grade\": \"4th\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-09\",\n                \"start_time\": \"07:55:00\",\n                \"day_of_week__day\": \"Thursday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"09:55:00\",\n                \"class_grade\": \"3rd\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-09\",\n                \"start_time\": \"07:55:00\",\n                \"day_of_week__day\": \"Thursday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"09:55:00\",\n                \"class_grade\": \"4th\"\n            },\n            {\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-10-09\",\n                \"start_time\": \"07:55:00\",\n                \"day_of_week__day\": \"Thursday\",\n                \"teacher_id\": 0,\n                \"class_link\": null,\n                \"course_id__course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"end_time\": \"09:55:00\",\n                \"class_grade\": \"4th\"\n            }\n        ],\n        \"message\": \"success\"\n    }\n}"
+						},
+						{
+							"name": "confirmed_classes  No classes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "30627e31ace8a3891971ed5ffaf067a21d034517",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "192.168.0.95:8000/api/confirmed_classes/",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"95"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"confirmed_classes",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 04 Jun 2020 09:05:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"data\": {\n        \"message\": \"No class found\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Teacher claimed classes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "ddbe1055abf1bed830bfb617e01245a23a07e23c"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "192.168.0.95:8000/api/teacher_claimed_classes/",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"95"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"teacher_claimed_classes",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "claimed classes Teacher Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "ddbe1055abf1bed830bfb617e01245a23a07e23c",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "192.168.0.95:8000/api/teacher_claimed_classes/",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"95"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"teacher_claimed_classes",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 05 Jun 2020 07:46:27 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "306"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"available_classes\": [\n            {\n                \"id\": 1,\n                \"course_id__course_name\": \"Science\",\n                \"class_date\": \"2020-07-31\",\n                \"start_time\": \"01:25:00\",\n                \"end_time\": \"03:25:00\",\n                \"day_of_week__day\": \"Monday\",\n                \"teacher_id\": 27,\n                \"course_id__level__level\": \"Thrive\",\n                \"class_link\": \"abc.com\"\n            }\n        ],\n        \"message\": \"success\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Teacher add zoom link",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"type": "text",
+								"value": "ddbe1055abf1bed830bfb617e01245a23a07e23c"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"class_id\":\"1\",\"class_link\":\"abcd.com\"}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "192.168.0.95:8000/api/teacher_add_zoom_link/",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"95"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"teacher_add_zoom_link",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Teacher add zomm link",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "ddbe1055abf1bed830bfb617e01245a23a07e23c",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"class_id\":\"1\",\"class_link\":\"abcd.com\"}"
+								},
+								"url": {
+									"raw": "192.168.0.95:8000/api/teacher_add_zoom_link/",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"95"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"teacher_add_zoom_link",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 05 Jun 2020 07:48:09 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Zoom link added successfully\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "all courses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "b047995e7638284db5760028f670c10764dbbe73",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://pillarzapi-env.eba-fpqhfczp.us-east-1.elasticbeanstalk.com/api/all_courses/",
+							"protocol": "http",
+							"host": [
+								"pillarzapi-env",
+								"eba-fpqhfczp",
+								"us-east-1",
+								"elasticbeanstalk",
+								"com"
+							],
+							"path": [
+								"api",
+								"all_courses",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "all courses page=2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "d9dd4e62165b318381cf0428d665bf09dd2a22c2",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://pillarzapi-env.eba-fpqhfczp.us-east-1.elasticbeanstalk.com/api/all_courses/?page=2",
+									"protocol": "http",
+									"host": [
+										"pillarzapi-env",
+										"eba-fpqhfczp",
+										"us-east-1",
+										"elasticbeanstalk",
+										"com"
+									],
+									"path": [
+										"api",
+										"all_courses",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 04 Jun 2020 06:32:23 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Amazon) mod_wsgi/3.5 Python/3.6.10"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Content-Length",
+									"value": "331"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"courses_list\": [\n            {\n                \"course_name\": \"Test course 7\",\n                \"duration_value\": null,\n                \"level_id__level\": \"Scholar\",\n                \"duration_period__duration\": null,\n                \"course_description\": \"<p>Test dexcription</p>\",\n                \"price_per_week\": 23,\n                \"price_per_month\": 233,\n                \"free_duration\": \"7hrs/3 day per weekssss\"\n            }\n        ],\n        \"message\": \"success\"\n    }\n}"
+						},
+						{
+							"name": "all courses pass",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/all_courses/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"all_courses",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 27 May 2020 07:00:45 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Amazon) mod_wsgi/3.5 Python/3.6.10"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1041"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"200\",\n    \"data\": {\n        \"courses_list\": [\n            {\n                \"course_name\": \"Science\",\n                \"duration_value\": 2,\n                \"level_id__level\": \"Thrive\",\n                \"duration_period__duration\": \"weeks\",\n                \"course_description\": \"<p style=\\\"text-align: center;\\\">Science Desccription line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">Science Desccription -this is Html</p>\",\n                \"price_per_week\": 12,\n                \"price_per_month\": 50\n            },\n            {\n                \"course_name\": \"Math\",\n                \"duration_value\": 1,\n                \"level_id__level\": \"Enhance\",\n                \"duration_period__duration\": \"years\",\n                \"course_description\": \"<p style=\\\"text-align: center;\\\">description line 1</p>\\r\\n<p style=\\\"text-align: center;\\\">description line 2</p>\\r\\n<p style=\\\"text-align: center;\\\">description line 3</p>\",\n                \"price_per_week\": 15,\n                \"price_per_month\": 55\n            },\n            {\n                \"course_name\": \"Geography\",\n                \"duration_value\": 12,\n                \"level_id__level\": \"Scholar\",\n                \"duration_period__duration\": \"months\",\n                \"course_description\": \"geographic lessons\",\n                \"price_per_week\": 13,\n                \"price_per_month\": 39\n            }\n        ],\n        \"message\": \"success\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "add order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"grand_total_amt\": \"100\",\r\n\t\"selected_date\": \"2020-10-06T08:22:20\",\r\n\t\"course_id\": \"8\",\r\n\t\"course_price\": 8.8,\r\n\t\"course_duration\": \"weekly\",\r\n\t\"child_information\": [{\r\n\t\t\t\"child_name\": \"gray\",\r\n\t\t\t\"child_grade\": \"4th\",\r\n\t\t\t\"child_interests\": \"GK\",\r\n\t\t\t\"child_age\": 19\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"child_name\": \"yellow\",\r\n\t\t\t\"child_grade\": \"4th\",\r\n\t\t\t\"child_interests\": \"Science\",\r\n\t\t\t\"child_age\": 20\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "192.168.0.95:8000/api/add_order/",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"95"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"add_order",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add order sucess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "b047995e7638284db5760028f670c10764dbbe73",
+										"type": "text"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"grand_total_amt\": \"100\",\r\n\t\"selected_date\": \"2020-10-06T08:22:20\",\r\n\t\"course_id\": \"8\",\r\n\t\"course_price\": \"50\",\r\n\t\"course_duration\": \"weekly\",\r\n\t\"child_information\": [{\r\n\t\t\t\"child_name\": \"arjun\",\r\n\t\t\t\"child_grade\": \"VII\",\r\n\t\t\t\"child_interests\": \"GK\",\r\n\t\t\t\"child_age\": 12\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"child_name\": \"karan\",\r\n\t\t\t\"child_grade\": \"VI\",\r\n\t\t\t\"child_interests\": \"Science\",\r\n\t\t\t\"child_age\": 18\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/add_order/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"add_order",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 10 Jun 2020 09:53:18 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.41 (Amazon) mod_wsgi/3.5 Python/3.6.10"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"order_id\": 5,\n        \"message\": \"Order added successfully\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "add_payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "c995283034ca780230bd6e775c65c6aee7c6b6b5",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order_id\":7,\r\n    \"transaction_id\":\"xyz\",\r\n    \"transaction_amt\":600\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/add_payment/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"add_payment",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add_payment success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+										"type": "text"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"order_id\":5,\r\n    \"transaction_id\":\"xyz\",\r\n    \"transaction_amt\":600,\r\n    \"promocode_id\":\"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/add_payment/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"add_payment",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 05 Aug 2020 05:43:51 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Payment Done successfully\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "payment_history/",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Token",
+								"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+								"type": "text"
+							},
+							{
+								"key": "timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/payment_history/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"payment_history",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "payment_history success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Token",
+										"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+										"type": "text"
+									},
+									{
+										"key": "timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/payment_history/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"payment_history",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 05 Aug 2020 07:26:31 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, GET"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "620"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"payment_list\": [\n            {\n                \"transaction_id\": \"xyz\",\n                \"transaction_amt\": 600,\n                \"promocode_id__code\": null,\n                \"promocode_id__discount_percentage\": null,\n                \"transaction_date\": \"2020-08-05T06:04:46.632Z\",\n                \"order_id__selected_date\": \"2020-10-06T08:22:20Z\",\n                \"order_id\": 5,\n                \"order_items\": [\n                    {\n                        \"child_name\": \"arjun\",\n                        \"child_grade\": \"3rd\",\n                        \"course_duration\": \"weekly\",\n                        \"course_id__course_name\": \"Science\",\n                        \"course_id__level__level\": \"Thrive\"\n                    },\n                    {\n                        \"child_name\": \"karan\",\n                        \"child_grade\": \"3rd\",\n                        \"course_duration\": \"weekly\",\n                        \"course_id__course_name\": \"Science\",\n                        \"course_id__level__level\": \"Thrive\"\n                    }\n                ]\n            }\n        ],\n        \"message\": \"success\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Validate_promocode",
+			"item": [
+				{
+					"name": "validate promocode",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+								"type": "text"
+							},
+							{
+								"key": "Timezone",
+								"value": "Asia/Kolkata",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"code\":\"code_weekly\",\"course_id\":\"8 \",\"course_duration\":\"weekly\"}"
+						},
+						"url": {
+							"raw": "{{pillarz-api-host}}/api/validate_promocode/",
+							"host": [
+								"{{pillarz-api-host}}"
+							],
+							"path": [
+								"api",
+								"validate_promocode",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "validate promocode success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+										"type": "text"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"code\":\"code_weekly\",\"course_id\":\"8\",\"course_duration\":\"weekly\"}"
+								},
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/validate_promocode/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"validate_promocode",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 05 Aug 2020 05:37:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"message\": \"Promocode matched!\",\n        \"discount_percentage\": 15,\n        \"promocode_id\": 1\n    }\n}"
+						},
+						{
+							"name": "validate promocode  failure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Token",
+										"value": "3bbbc871a80e92cf8ea633e1ec8a47cb7e53378b",
+										"type": "text"
+									},
+									{
+										"key": "Timezone",
+										"value": "Asia/Kolkata",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"code\":\"code_sad\",\"course_id\":\"8 \",\"course_duration\":\"weekly\"}"
+								},
+								"url": {
+									"raw": "{{pillarz-api-host}}/api/validate_promocode/",
+									"host": [
+										"{{pillarz-api-host}}"
+									],
+									"path": [
+										"api",
+										"validate_promocode",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Aug 2020 08:25:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.6.9"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Allow",
+									"value": "OPTIONS, POST"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "Vary",
+									"value": "Cookie"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 204,\n    \"data\": {\n        \"message\": \"Invalid Promocode!\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
